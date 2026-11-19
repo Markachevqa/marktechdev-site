@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRM для автосервиса — программа для СТО под ваш процесс | Марк-Тех</title>
+  <meta name="description" content="CRM и программа для автосервиса: онлайн-запись на посты, заказ-наряды, склад запчастей, зарплата мастеров, напоминания о ТО и бот в Telegram. Запуск за 2–4 недели, 1С остаётся. Бесплатный аудит.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Марк-Тех">
+  <link rel="canonical" href="https://marktechdev.ru/crm-dlya-avtoservisa/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Марк-Тех">
+  <meta property="og:title" content="CRM для автосервиса, которая возвращает клиентов и наводит порядок на постах">
+  <meta property="og:description" content="Запись на посты, заказ-наряды, склад запчастей, зарплата мастеров и напоминания о ТО — в одной системе. Запуск за 2–4 недели, бесплатный аудит процессов.">
+  <meta property="og:url" content="https://marktechdev.ru/crm-dlya-avtoservisa/">
+  <meta property="og:image" content="https://marktechdev.ru/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CRM для автосервиса, которая возвращает клиентов и наводит порядок на постах">
+  <meta name="twitter:description" content="Запись на посты, заказ-наряды, склад запчастей, зарплата мастеров и напоминания о ТО — в одной системе. Запуск за 2–4 недели, бесплатный аудит процессов.">
+  <meta name="twitter:image" content="https://marktechdev.ru/assets/og-image.png">
+
+  <link rel="preload" href="/assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Внедрение CRM для автосервиса",
+  "serviceType": "CRM-система для автосервиса",
+  "description": "Запись на посты, заказ-наряды, склад запчастей, зарплата мастеров и напоминания о ТО — в одной системе. Клиент записывается и следит за ремонтом в мессенджере, а вы получаете вечерний отчёт в Telegram. 1С остаётся бухгалтерии.",
+  "url": "https://marktechdev.ru/crm-dlya-avtoservisa/",
+  "provider": {
+    "@type": "Organization",
+    "name": "Марк-Тех",
+    "url": "https://marktechdev.ru/",
+    "email": "info@marktechdev.ru",
+    "logo": "https://marktechdev.ru/assets/logo.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Россия"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "name": "Для СТО, шиномонтажей, кузовных и детейлинг-центров от 1 поста до сети"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Пакеты внедрения",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Пакет «Старт» (1–3 поста)",
+        "description": "Онлайн-запись и журнал постов; Заказ-наряды и печатные формы; База клиентов и автомобилей; Telegram-бот: запись и статусы; Ежедневный отчёт в Telegram; До 5 пользователей; Перенос базы из Excel. Срок запуска: 2 недели.",
+        "url": "https://marktechdev.ru/crm-dlya-avtoservisa/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Внедрение CRM для автосервиса — пакет «Старт»"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Пакет «Бизнес» (4–8 постов)",
+        "description": "Всё из «Старт»; Склад запчастей и закупки; Зарплата мастеров по нормочасам; Напоминания о ТО и сезонных работах; Боты в Telegram и VK (+ WhatsApp/MAX по запросу); Обмен с 1С; Дашборд владельца, до 15 пользователей. Срок запуска: 3 недели.",
+        "url": "https://marktechdev.ru/crm-dlya-avtoservisa/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Внедрение CRM для автосервиса — пакет «Бизнес»"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Пакет «Под ключ» (сеть или 8+ постов)",
+        "description": "Всё из «Бизнес»; Несколько точек и складов; Доработки под ваш процесс; Интеграция с поставщиками запчастей (по API); IP-телефония и виджет записи на сайт; Выделенный сервер в РФ; Пользователи без лимита. Срок запуска: до 4 недель.",
+        "url": "https://marktechdev.ru/crm-dlya-avtoservisa/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Внедрение CRM для автосервиса — пакет «Под ключ»"
+        }
+      }
+    ]
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Чем это лучше готовой программы для автосервиса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Если вам подходит типовая программа и процесс укладывается в её шаблон — это хороший вариант, мы так и скажем на аудите. Наша система нужна, когда процесс нестандартный и нужно связать запись, склад, зарплату мастеров, бота для клиентов и 1С в одном месте."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит CRM для автосервиса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость и условия рассчитываем индивидуально после бесплатного аудита: она зависит от числа сотрудников и точек, нужных модулей и интеграций. Состав работ и сроки фиксируем в договоре."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как быстро запустимся и не встанет ли работа сервиса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Запуск занимает 2–4 недели в зависимости от пакета. На неделе обучения система работает параллельно со старой схемой — журнал или Excel не выбрасываем, пока команда не освоится."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "У нас база в Excel / старой программе. Перенесёте?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, перенос базы клиентов и автомобилей из Excel входит во все пакеты. Перенос из другой программы оцениваем на аудите — зависит от того, какую выгрузку она даёт."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "У вас нет кейсов в автосервисах — почему стоит вам доверять?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Честно: «Марк-Тех» — молодая компания, отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых трёх компаний в отрасли — специальные условия."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что если система не подойдёт? Наши данные останутся у нас?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ваши данные остаются вашими: выгрузку всех данных в Excel/CSV делаем в любой момент. В пакете «Под ключ» возможна передача исходного кода по договору. Условия работы обсуждаем индивидуально."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Мастера не будут этим пользоваться…",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поэтому мастерам — минимум действий: задания и статусы в Telegram-боте на телефоне. Обучение сотрудников входит во внедрение."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужно покупать сервер или оборудование?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Система работает в браузере и на телефоне, на сервере в российском дата-центре. В пакете «Под ключ» — выделенный сервер в РФ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Вы работаете только в Москве?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет, по всей России: аудит, демонстрации и обучение проходят онлайн."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Марк-Тех",
+      "item": "https://marktechdev.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "CRM для автосервиса",
+      "item": "https://marktechdev.ru/crm-dlya-avtoservisa/"
+    }
+  ]
+}
+  </script>
+</head>
+<body class="landing">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/" aria-label="Марк-Тех — на главную">
+        <img src="/assets/logo.svg" width="32" height="32" alt="">
+        <span class="logo-name">Марк-Тех</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a href="/uslugi">Услуги</a>
+        <a href="/kak-rabotaem">Как работаем</a>
+        <a href="/preimushchestva">Преимущества</a>
+        <a href="/tehnologii">Технологии</a>
+        <a href="/voprosy">Вопросы</a>
+        <a href="/kontakty">Контакты</a>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-primary" href="#zayavka">Бесплатный аудит</a>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span>CRM для автосервиса</span></nav>
+          <div class="badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Специальные условия для первых 3 клиентов в отрасли
+          </div>
+          <h1>CRM для автосервиса, которая возвращает клиентов и наводит порядок на постах</h1>
+          <p class="lead">Программа для автосервиса под ваш процесс: онлайн-запись, заказ-наряды, склад запчастей, зарплата мастеров и напоминания о ТО. Клиент записывается и следит за ремонтом в Telegram, а вы каждый вечер получаете отчёт о выручке. Запуск за 2–4 недели, 1С остаётся у бухгалтерии.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">
+              Бесплатный аудит за 30 минут
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#kalkulyator">Посчитать потери</a>
+          </div>
+          <ul class="hero-points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Запуск за 2–4 недели</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Сроки и объём — в договоре</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Данные — на серверах в РФ</li>
+          </ul>
+          <div class="hero-tags"><span class="float-tag">СТО</span><span class="float-tag">Шиномонтаж</span><span class="float-tag">Кузовной ремонт</span><span class="float-tag">Детейлинг</span><span class="float-tag">Сеть сервисов</span></div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="glow glow-a"></div>
+          <div class="glow glow-b"></div>
+          <div class="system-card report-card">
+            <div class="system-card-head">
+              <strong>Отчёт за день · СТО</strong>
+              <div class="status-pills"><i></i><i></i><i></i></div>
+            </div>
+            <p class="report-kicker">Каждый вечер в Telegram владельцу</p>
+            <div class="report-row"><span>Заказ-нарядов закрыто</span><strong>14</strong></div><div class="report-row"><span>Выручка</span><strong>186 400 ₽</strong></div><div class="report-row"><span>Загрузка постов</span><strong>82%</strong></div><div class="report-row"><span>Ждут запчасть</span><strong>3 авто</strong></div><div class="report-row"><span>Напомнить о ТО завтра</span><strong>11 клиентов</strong></div>
+            <p class="report-note">Пример вида отчёта, цифры условные</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="problemy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Проблемы</span>
+          <h2>Узнаёте свой автосервис?</h2>
+          <p>Мы изучили, с чем чаще всего сталкиваются владельцы СТО. Узнаёте себя?</p>
+        </div>
+        <div class="pain-grid">
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Запись в тетради и мессенджере</h3><p>Накладки на посты, пропущенные звонки в часы пик, записи вне рабочего времени теряются.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Заказ-наряды на бумаге или в Excel</h3><p>Нет истории по автомобилю, сложно доказать, какие работы согласовал клиент.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Запчасти «в тумане»</h3><p>Остатки не сходятся, деталь под клиента заказали и забыли, деньги заморожены на складе.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Мастера и зарплата</h3><p>Ручной расчёт по нормочасам, споры «кто что делал», не видно загрузку постов.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Ну что там с машиной?»</h3><p>Клиенты звонят узнать статус, администратор отвлекается, доп. работы согласуются устно.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Клиент не возвращается</h3><p>Никто не напоминает о ТО, замене масла и сезонном шиномонтаже — клиент уходит к соседу.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Владелец без цифр</h3><p>Выручку и маржу дня видно только после сверки с 1С и обзвона администраторов.</p></div>
+          </article>
+        </div>
+        <div class="agitate">
+          <p>По отдельности это мелочи. Вместе — пропущенные записи, клиенты, ушедшие к соседу, и деньги, замороженные на складе. И никто не видит, сколько это стоит в месяц.</p>
+          <a class="btn btn-primary" href="#kalkulyator">Посчитать, сколько это стоит вам <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kalkulyator">
+      <div class="container calc-grid">
+        <div>
+          <span class="kicker">Калькулятор</span>
+          <h2>Сколько теряет ваш автосервис: быстрый расчёт</h2>
+          <p class="subhead">Подставьте свои цифры — калькулятор покажет порядок потерь от пропущенных звонков, неявок и клиентов, которым никто не напомнил о ТО.</p>
+          <div class="form calc-form" id="calc" data-unit="обращений" data-niche="Автосервис" role="group" aria-label="Исходные данные для расчёта">
+            <div class="calc-mini" aria-hidden="true"><span>Вы теряете</span><strong>~<span id="calc-mini">0</span>&nbsp;₽/мес</strong><span class="calc-mini-gain">вернуть ~<span id="calc-mini-gain">0</span>&nbsp;₽</span></div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-n">Обращений в месяц: звонки, заявки, записи</label>
+                <span class="range-val"><input id="calc-n-num" data-calc-num="n" type="number" inputmode="numeric" min="0" step="10" value="200" aria-label="Обращений в месяц: звонки, заявки, записи"><span class="range-unit">шт.</span></span>
+              </div>
+              <input id="calc-n" class="range" data-calc="n" type="range" min="20" max="2000" step="10" value="200">
+              <div class="range-scale" aria-hidden="true"><span>20</span><span>2 000+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-p">Сколько теряется: не дозвонились, не пришли, не вернулись на ТО</label>
+                <span class="range-val"><input id="calc-p-num" data-calc-num="p" type="number" inputmode="numeric" min="0" step="1" value="5" aria-label="Сколько теряется: не дозвонились, не пришли, не вернулись на ТО"><span class="range-unit">%</span></span>
+              </div>
+              <input id="calc-p" class="range" data-calc="p" type="range" min="0" max="40" step="1" value="5">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>40+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-check">Средний чек заказ-наряда</label>
+                <span class="range-val"><input id="calc-check-num" data-calc-num="check" type="number" inputmode="numeric" min="0" step="500" value="5000" aria-label="Средний чек заказ-наряда"><span class="range-unit">₽</span></span>
+              </div>
+              <input id="calc-check" class="range" data-calc="check" type="range" min="1000" max="50000" step="500" value="5000">
+              <div class="range-scale" aria-hidden="true"><span>1 000</span><span>50 000+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-r">Какую долю потерь реально вернуть записью и напоминаниями</label>
+                <span class="range-val"><input id="calc-r-num" data-calc-num="r" type="number" inputmode="numeric" min="0" step="5" value="20" aria-label="Какую долю потерь реально вернуть записью и напоминаниями"><span class="range-unit">%</span></span>
+              </div>
+              <input id="calc-r" class="range" data-calc="r" type="range" min="0" max="60" step="5" value="20">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>60+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-h">Часов в неделю на ручной учёт: журнал, Excel, обзвон</label>
+                <span class="range-val"><input id="calc-h-num" data-calc-num="h" type="number" inputmode="numeric" min="0" step="1" value="8" aria-label="Часов в неделю на ручной учёт: журнал, Excel, обзвон"><span class="range-unit">ч</span></span>
+              </div>
+              <input id="calc-h" class="range" data-calc="h" type="range" min="0" max="60" step="1" value="8">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>60+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-rate">Стоимость часа сотрудника</label>
+                <span class="range-val"><input id="calc-rate-num" data-calc-num="rate" type="number" inputmode="numeric" min="0" step="50" value="400" aria-label="Стоимость часа сотрудника"><span class="range-unit">₽</span></span>
+              </div>
+              <input id="calc-rate" class="range" data-calc="rate" type="range" min="200" max="3000" step="50" value="400">
+              <div class="range-scale" aria-hidden="true"><span>200</span><span>3 000+</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="calc-result" aria-live="polite">
+          <p class="calc-big-label">Вы теряете примерно</p>
+          <p class="calc-big"><span id="calc-total">0</span><span class="calc-cur">&nbsp;₽</span><span class="calc-per">в месяц</span></p>
+          <p class="calc-year">≈ <strong id="calc-total-year">0</strong>&nbsp;₽ в год</p>
+          <div class="calc-bar" aria-hidden="true">
+            <div class="calc-bar-track"><div class="calc-bar-loss" id="calc-bar-loss"></div><div class="calc-bar-gain" id="calc-bar-gain"></div></div>
+            <div class="calc-legend"><span><i class="lg-loss"></i>Потери</span><span><i class="lg-gain"></i>Можно вернуть с системой</span></div>
+          </div>
+          <div class="calc-lines">
+            <div class="calc-line"><span>Теряете из-за пропущенных обращений</span><strong><span id="calc-loss">0</span>&nbsp;₽</strong></div>
+            <div class="calc-line"><span>Ручная рутина стоит</span><strong><span id="calc-routine">0</span>&nbsp;₽</strong></div>
+            <div class="calc-line calc-line-accent"><span>Можно вернуть с системой (оценка)</span><strong><span id="calc-gain">0</span>&nbsp;₽<small>/мес · <span id="calc-gain-year">0</span>&nbsp;₽ в год</small></strong></div>
+          </div>
+          <a class="btn btn-primary btn-lg btn-block" href="#zayavka" data-goal="Разбор расчёта потерь на аудите" data-calc-cta>Обсудить, как вернуть эти деньги <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="calc-assume"><strong>Это оценка, а не обещание.</strong> Формулы: потери = обращения × доля потерь × средний чек; рутина = часы в неделю × 4,33 × стоимость часа; «вы теряете» = потери + рутина; «можно вернуть» = потери × доля, которую реально вернуть, + половина стоимости рутины (допущение: система снимает около 50% ручной работы). Все допущения можно поменять, реальные цифры разберём на аудите.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="vozmozhnosti">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Что получите</span>
+          <h2>Что получит ваш автосервис</h2>
+          <p>Запись на посты, заказ-наряды, склад запчастей, зарплата мастеров и напоминания о ТО — в одной системе. Клиент записывается и следит за ремонтом в мессенджере, а вы получаете вечерний отчёт в Telegram. 1С остаётся бухгалтерии.</p>
+        </div>
+        <div class="cards cards-4">
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+            <h3>Онлайн-запись и журнал постов</h3>
+            <p>Расписание по постам и мастерам, запись через бота и виджет на сайте, контроль накладок.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 12h6M9 16h4"/></svg></div>
+            <h3>Заказ-наряды</h3>
+            <p>Работы по нормочасам, запчасти, согласование доп. работ с фиксацией в истории, печатные формы и акты.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <h3>Клиенты и автомобили</h3>
+            <p>История обслуживания по VIN и госномеру, пробег, рекомендации мастера на следующий визит.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
+            <h3>Склад запчастей</h3>
+            <p>Приход, резерв под заказ-наряд, списание, минимальные остатки, заказ у поставщика.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Мастера и зарплата</h3>
+            <p>Выработка по нормочасам, процент от работ и запчастей, расчёт зарплаты за период.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Бот для клиентов</h3>
+            <p>Запись, статусы ремонта, фото/согласование доп. работ, счёт и уведомление «машина готова».</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+            <h3>Напоминания о ТО</h3>
+            <p>Автоматически по пробегу/сроку: ТО, масло, шины, сезонные акции — с записью в один клик.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6"/></svg></div>
+            <h3>Отчёт владельцу</h3>
+            <p>Ежедневная сводка в Telegram и дашборд: выручка, средний чек, загрузка постов, должники.</p>
+          </article>
+        </div>
+        <div class="check-grid check-grid-3">
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Бэкенд на Rust</h3><p>Быстрый отклик интерфейса и ботов, высокая надёжность и скромные требования к серверу.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Серверы в России</h3><p>Данные хранятся и обрабатываются в дата-центрах на территории РФ — в соответствии с требованием о локализации персональных данных (152-ФЗ).</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>1С остаётся бухгалтерии</h3><p>Обмен с 1С (Бухгалтерия, УНФ, УТ — по согласованию): клиенты, документы реализации, платежи. Двойного ввода нет.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Боты для клиентов</h3><p>Telegram и VK — основные каналы; WhatsApp и MAX — по запросу и с учётом доступности сервисов в РФ; SMS — как резервный канал.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Отчёт владельцу</h3><p>Каждый вечер — сводка в Telegram: выручка, загрузка, проблемные заказы. Подробный дашборд — в браузере и на телефоне.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Безопасность</h3><p>Разграничение прав по ролям, журнал действий, шифрованное соединение, ежедневные резервные копии.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pakety">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Пакеты</span>
+          <h2>Пакеты внедрения: CRM для автосервиса</h2>
+          <p class="pkg-lead">Стоимость и условия рассчитываем индивидуально после бесплатного аудита.</p>
+          <p>Пакеты — это ориентир по составу работ: итоговый набор модулей подбираем под ваш процесс, а объём и сроки фиксируем в договоре.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+
+            <h3>Старт</h3>
+            <p class="price-for">1–3 поста</p>
+            <p class="pkg-term">Срок запуска: 2 недели</p>
+            <ul><li>Онлайн-запись и журнал постов</li><li>Заказ-наряды и печатные формы</li><li>База клиентов и автомобилей</li><li>Telegram-бот: запись и статусы</li><li>Ежедневный отчёт в Telegram</li><li>До 5 пользователей</li><li>Перенос базы из Excel</li></ul>
+            <a class="btn btn-ghost btn-block" href="#zayavka" data-package="Старт" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+          <article class="price-card price-card-featured">
+            <span class="price-badge">Рекомендуем</span>
+            <h3>Бизнес</h3>
+            <p class="price-for">4–8 постов</p>
+            <p class="pkg-term">Срок запуска: 3 недели</p>
+            <ul><li>Всё из «Старт»</li><li>Склад запчастей и закупки</li><li>Зарплата мастеров по нормочасам</li><li>Напоминания о ТО и сезонных работах</li><li>Боты в Telegram и VK (+ WhatsApp/MAX по запросу)</li><li>Обмен с 1С</li><li>Дашборд владельца, до 15 пользователей</li></ul>
+            <a class="btn btn-primary btn-block" href="#zayavka" data-package="Бизнес" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+          <article class="price-card">
+
+            <h3>Под ключ</h3>
+            <p class="price-for">сеть или 8+ постов</p>
+            <p class="pkg-term">Срок запуска: до 4 недель</p>
+            <ul><li>Всё из «Бизнес»</li><li>Несколько точек и складов</li><li>Доработки под ваш процесс</li><li>Интеграция с поставщиками запчастей (по API)</li><li>IP-телефония и виджет записи на сайт</li><li>Выделенный сервер в РФ</li><li>Пользователи без лимита</li></ul>
+            <a class="btn btn-ghost btn-block" href="#zayavka" data-package="Под ключ" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-tight" id="pilot">
+      <div class="container">
+        <div class="pilot-box">
+          <div>
+            <span class="kicker">Ограниченное предложение</span>
+            <h2>Специальные условия для первых 3 клиентов в отрасли</h2>
+            <ul class="pilot-list"><li>особые условия внедрения для первых трёх компаний в каждой отрасли</li><li>взамен — регулярная обратная связь по работе системы</li></ul>
+            <p class="pilot-note">Условия обсуждаем индивидуально на аудите. После третьего договора в отрасли предложение закрывается.</p>
+          </div>
+          <div class="pilot-cta">
+            <a class="btn btn-primary btn-lg" href="#zayavka" data-goal="Специальные условия для первых клиентов">Узнать условия <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="besplatno">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Бесплатно</span>
+          <h2>Три способа оценить систему без затрат</h2>
+          <p>Ничего не продаём на первом шаге: сначала разбираемся, подходит ли вам система.</p>
+        </div>
+        <div class="cards cards-3">
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+            <h3>Аудит процессов за 30 минут</h3>
+            <p>Созвон с основателем: разбираем запись, учёт и отчётность, показываем, где теряются деньги, и честно говорим, нужна ли вам система или хватит готовой программы.</p>
+            <a class="btn btn-primary" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Записаться на аудит</a>
+          </article>
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6"/></svg></div>
+            <h3>Демо на ваших данных</h3>
+            <p>Пришлите обезличенную выгрузку из Excel или пару примеров документов без персональных данных — покажем, как ваш процесс будет выглядеть в системе.</p>
+            <a class="btn btn-ghost" href="#zayavka" data-goal="Демо на наших данных">Запросить демо</a>
+          </article>
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 12h6M9 16h4"/></svg></div>
+            <h3>Коммерческое предложение в PDF</h3>
+            <p>5 страниц: боли отрасли, модули, этапы внедрения и пакеты. Удобно показать партнёру или управляющему.</p>
+            <a class="btn btn-ghost" href="/assets/kp/kp-crm-avtoservis.pdf" download>Скачать КП (PDF)</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sravnenie">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Сравнение</span>
+          <h2>Excel, коробочная программа или система под ваш процесс</h2>
+          <p>У каждого варианта есть своё место. Сравнение — по типичным условиям; конкретные коробочные продукты отличаются функциями.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="compare">
+            <thead><tr><th scope="col">Критерий</th><th scope="col">Excel и тетрадь</th><th scope="col">Коробочная CRM</th><th scope="col" class="col-us">Марк-Тех</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Под ваш процесс</th><td>Сколько выдержит таблица</td><td>В рамках шаблона и настроек продукта</td><td class="col-us">Настраиваем и дорабатываем под вас</td></tr>
+              <tr><th scope="row">Бот для клиентов</th><td>Нет</td><td>Зависит от тарифа и модулей</td><td class="col-us">Входит во все пакеты</td></tr>
+              <tr><th scope="row">Обмен с 1С</th><td>Ручной перенос</td><td>Часто есть, зависит от продукта</td><td class="col-us">Настраиваем сами (от пакета «Бизнес»)</td></tr>
+              <tr><th scope="row">Отчёт владельцу</th><td>Собирать вручную</td><td>Отчёты в интерфейсе</td><td class="col-us">Каждый вечер в Telegram + дашборд</td></tr>
+              <tr><th scope="row">Кто внедряет</th><td>Вы сами</td><td>Чаще вы сами или партнёр</td><td class="col-us">Мы: перенос данных и обучение команды</td></tr>
+              <tr><th scope="row">Ваши данные</th><td>Файлы на компьютере</td><td>У вендора, выгрузка — по условиям продукта</td><td class="col-us">Серверы в РФ, выгрузка в Excel/CSV в любой момент</td></tr>
+              <tr><th scope="row">Когда подходит</th><td>1–2 сотрудника, мало заказов</td><td>Процесс типовой, готовы под него подстроиться</td><td class="col-us">Процесс свой, нужен один инструмент вместо нескольких</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="etapy">
+      <div class="container process">
+        <div class="process-intro">
+          <span class="kicker">Этапы</span>
+          <h2>Запуск за 2–4 недели</h2>
+          <p class="subhead">Работаем параллельно со старой схемой, пока команда не освоится, чтобы при переходе не потерять ни записи, ни заказы.</p>
+          <a class="btn btn-primary" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Начать с бесплатного аудита</a>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">00</span>
+            <div><h3>Аудит <span class="step-time">1–2 дня</span></h3><p>Бесплатная встреча: разбираем процессы, документы, роли. Фиксируем объём работ и срок.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">01</span>
+            <div><h3>Проектирование и настройка <span class="step-time">неделя 1</span></h3><p>Справочники, роли, печатные формы, перенос базы из Excel/старой программы.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <div><h3>Интеграции и боты <span class="step-time">неделя 2</span></h3><p>Бот для клиентов, обмен с 1С, отчёт владельцу в Telegram.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <div><h3>Обучение и тест <span class="step-time">неделя 3</span></h3><p>Обучаем сотрудников, работаем параллельно со старой схемой, исправляем замечания.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">04</span>
+            <div><h3>Запуск <span class="step-time">неделя 4</span></h3><p>Приёмка по чек-листу и переход на работу в новой системе.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="garantii">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Гарантии</span>
+          <h2>Честно и прозрачно</h2>
+          <p>«Марк-Тех» — молодая компания: публичного портфолио и отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых клиентов в отрасли — специальные условия.</p>
+        </div>
+        <div class="check-grid check-grid-3">
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Сроки и объём — в договоре</h3><p>После аудита фиксируем в договоре состав работ, этапы и срок запуска.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Приёмка по чек-листу</h3><p>Заранее согласуем, что считается результатом, и сдаём систему по чек-листу.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Без остановки работы</h3><p>На время обучения система работает параллельно со старой схемой.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Выгрузка данных</h3><p>Все данные можно выгрузить в Excel/CSV в любой момент — они остаются вашими.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Данные — в РФ</h3><p>Хранение и обработка на серверах в России, с учётом требований 152-ФЗ.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Связь напрямую с разработчиком</h3><p>Вы общаетесь с разработчиками и основателем — без цепочки менеджеров.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="voprosy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">FAQ</span>
+          <h2>Частые вопросы: CRM для автосервиса</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Чем это лучше готовой программы для автосервиса?</summary>
+            <div class="faq-body"><p>Если вам подходит типовая программа и процесс укладывается в её шаблон — это хороший вариант, мы так и скажем на аудите. Наша система нужна, когда процесс нестандартный и нужно связать запись, склад, зарплату мастеров, бота для клиентов и 1С в одном месте.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Сколько стоит CRM для автосервиса?</summary>
+            <div class="faq-body"><p>Стоимость и условия рассчитываем индивидуально после бесплатного аудита: она зависит от числа сотрудников и точек, нужных модулей и интеграций. Состав работ и сроки фиксируем в договоре.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Как быстро запустимся и не встанет ли работа сервиса?</summary>
+            <div class="faq-body"><p>Запуск занимает 2–4 недели в зависимости от пакета. На неделе обучения система работает параллельно со старой схемой — журнал или Excel не выбрасываем, пока команда не освоится.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>У нас база в Excel / старой программе. Перенесёте?</summary>
+            <div class="faq-body"><p>Да, перенос базы клиентов и автомобилей из Excel входит во все пакеты. Перенос из другой программы оцениваем на аудите — зависит от того, какую выгрузку она даёт.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>У вас нет кейсов в автосервисах — почему стоит вам доверять?</summary>
+            <div class="faq-body"><p>Честно: «Марк-Тех» — молодая компания, отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых трёх компаний в отрасли — специальные условия.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Что если система не подойдёт? Наши данные останутся у нас?</summary>
+            <div class="faq-body"><p>Ваши данные остаются вашими: выгрузку всех данных в Excel/CSV делаем в любой момент. В пакете «Под ключ» возможна передача исходного кода по договору. Условия работы обсуждаем индивидуально.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Мастера не будут этим пользоваться…</summary>
+            <div class="faq-body"><p>Поэтому мастерам — минимум действий: задания и статусы в Telegram-боте на телефоне. Обучение сотрудников входит во внедрение.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Нужно покупать сервер или оборудование?</summary>
+            <div class="faq-body"><p>Нет. Система работает в браузере и на телефоне, на сервере в российском дата-центре. В пакете «Под ключ» — выделенный сервер в РФ.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Вы работаете только в Москве?</summary>
+            <div class="faq-body"><p>Нет, по всей России: аудит, демонстрации и обучение проходят онлайн.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="zayavka">
+      <div class="container contact-grid">
+        <div>
+          <span class="kicker">Заявка</span>
+          <h2>Получите бесплатный аудит и расчёт для вашего бизнеса</h2>
+          <p class="subhead">Оставьте контакт — ответим в течение рабочего дня, договоримся о 30-минутном созвоне и рассчитаем стоимость под ваши задачи. Ни к чему не обязывает.</p>
+          <ul class="hero-points hero-points-col">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Честно скажем, если вам лучше подойдёт готовая программа</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Специальные условия для первых 3 клиентов в отрасли</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Стоимость рассчитываем индивидуально после аудита</li>
+          </ul>
+          <div class="contact-meta">
+            <div class="contact-row">
+              <span>Эл. почта</span>
+              <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
+            </div>
+            <div class="contact-row">
+              <span>Коммерческое предложение</span>
+              <a href="/assets/kp/kp-crm-avtoservis.pdf" download>Скачать КП в PDF</a>
+            </div>
+          </div>
+          <div class="other-niches">
+            <h3>Другие отраслевые решения</h3>
+            <ul><li><a href="/crm-dlya-kliniki/">CRM для клиники и стоматологии</a></li><li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
+          </div>
+        </div>
+
+        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST" data-niche="Автосервис">
+          <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
+          </div>
+          <div class="form-row">
+            <label for="contact-field">Телефон или эл. почта <span class="req" aria-hidden="true">*</span></label>
+            <input id="contact-field" name="contact" type="text" autocomplete="tel" required placeholder="Телефон или email для ответа">
+          </div>
+          <div class="form-row form-row-2">
+            <div>
+              <label for="lead-goal">Что интересует</label>
+              <select id="lead-goal" data-lead="goal">
+                <option value="Бесплатный аудит процессов (30 минут)">Бесплатный аудит (30 минут)</option>
+                <option value="Демо на наших данных">Демо на наших данных</option>
+                <option value="Специальные условия для первых клиентов">Специальные условия для первых клиентов</option>
+                <option value="Разбор расчёта потерь на аудите">Разбор расчёта потерь</option>
+                <option value="Расчёт стоимости">Расчёт стоимости</option>
+              </select>
+            </div>
+            <div>
+              <label for="lead-package">Пакет</label>
+              <select id="lead-package" data-lead="package">
+                <option value="Не знаю, нужна консультация">Не знаю — подскажите</option>
+                <option value="Старт">Старт — 1–3 поста</option><option value="Бизнес">Бизнес — 4–8 постов</option><option value="Под ключ">Под ключ — сеть или 8+ постов</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="message">Комментарий</label>
+            <textarea id="message" name="message" placeholder="Например: 4 поста, запись в тетради, хотим бота и напоминания о ТО"></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Даю <a href="/soglasie.html" target="_blank" rel="noopener">согласие на обработку моих персональных данных</a> <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Получить бесплатный аудит</button>
+          <p class="form-note">Порядок обработки данных описан в <a href="/privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</p>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn btn-primary btn-block" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Бесплатный аудит за 30 минут</a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid footer-grid-4">
+        <div>
+          <a class="footer-brand" href="/">
+            <img src="/assets/logo.svg" width="28" height="28" alt="">
+            Марк-Тех
+          </a>
+          <p>Заказная разработка программного обеспечения для бизнеса. Москва, проекты по всей России.</p>
+        </div>
+        <div>
+          <h3>Разделы</h3>
+          <ul>
+            <li><a href="/uslugi">Услуги</a></li>
+            <li><a href="/kak-rabotaem">Как работаем</a></li>
+            <li><a href="/preimushchestva">Преимущества</a></li>
+            <li><a href="/voprosy">Вопросы</a></li>
+            <li><a href="/kontakty">Оставить заявку</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Решения для отраслей</h3>
+          <ul>
+            <li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li>
+            <li><a href="/crm-dlya-kliniki/">CRM для клиники и стоматологии</a></li>
+            <li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Связаться</h3>
+          <ul>
+            <li><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></li>
+            <li>Москва, Россия</li>
+            <li><a href="/privacy.html">Политика обработки персональных данных</a></li>
+            <li><a href="/soglasie.html">Согласие на обработку персональных данных</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Марк-Тех</span>
+        <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
