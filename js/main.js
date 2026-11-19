@@ -32,40 +32,29 @@
   }
 
   form.addEventListener("submit", function (event) {
-    var endpoint = form.getAttribute("data-endpoint") || "";
-    var isPlaceholder = endpoint === "placeholder" || /YOUR_FORM_ID/i.test(form.getAttribute("action") || "");
-
-    if (!isPlaceholder) {
-      return;
-    }
-
     event.preventDefault();
-
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-
-    var name = (form.elements.namedItem("name") || {}).value || "";
-    var contact = (form.elements.namedItem("contact") || {}).value || "";
-    var message = (form.elements.namedItem("message") || {}).value || "";
-    var email = "info@marktechdev.ru";
-
-    var body =
-      "Имя: " + name + "\n" +
-      "Контакт: " + contact + "\n\n" +
-      message;
-
-    var mailto =
-      "mailto:" + email +
-      "?subject=" + encodeURIComponent("Заявка с сайта Марк-Тех") +
-      "&body=" + encodeURIComponent(body);
-
-    showStatus(
-      true,
-      "Форма ещё не подключена к серверу (см. TODO в коде). Открываю письмо на " + email + " — отправьте его из почтовой программы. Чтобы заявки приходили автоматически, укажите endpoint Formspree или аналога."
-    );
-
-    window.location.href = mailto;
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; }
+    showStatus(true, "Отправляем заявку…");
+    var data = new FormData(form);
+    data.delete("consent");
+    fetch(form.action, { method: "POST", headers: { "Accept": "application/json" }, body: data })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.success, j: j }; }); })
+      .then(function (res) {
+        if (res.ok) {
+          form.reset();
+          showStatus(true, "Спасибо! Заявка отправлена — мы ответим в течение рабочего дня.");
+        } else {
+          throw new Error("send failed");
+        }
+      })
+      .catch(function () {
+        showStatus(false, "Не удалось отправить заявку. Напишите нам на info@marktechdev.ru — ответим в течение рабочего дня.");
+      })
+      .then(function () { if (btn) { btn.disabled = false; } });
   });
 })();
