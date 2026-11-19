@@ -40,6 +40,7 @@
     "name": "Марк-Тех",
     "url": "https://marktechdev.ru/",
     "email": "info@marktechdev.ru",
+    "telephone": "+7-985-331-86-05",
     "logo": "https://marktechdev.ru/assets/logo.svg",
     "address": {
       "@type": "PostalAddress",
@@ -212,6 +213,7 @@
         <a href="/kontakty">Контакты</a>
       </nav>
       <div class="header-cta">
+        <a class="header-phone" href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
         <a class="btn btn-primary" href="#zayavka">Бесплатный аудит</a>
         <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню">
           <span></span>
@@ -239,9 +241,7 @@
             <a class="btn btn-ghost btn-lg" href="#kalkulyator">Посчитать потери</a>
           </div>
           <ul class="hero-points">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Запуск за 2–4 недели</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Сроки и объём — в договоре</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Данные — на серверах в РФ</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Запуск за 2–4 недели</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Сроки и объём — в договоре</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Данные — на серверах в РФ</li>
           </ul>
           <div class="hero-tags"><span class="float-tag">Мебель на заказ</span><span class="float-tag">Металлообработка</span><span class="float-tag">Швейное</span><span class="float-tag">Полиграфия</span><span class="float-tag">Мастерские</span></div>
         </div>
@@ -312,7 +312,7 @@
           <span class="kicker">Калькулятор</span>
           <h2>Сколько теряет ваше производство: быстрый расчёт</h2>
           <p class="subhead">Подставьте свои цифры — калькулятор покажет порядок выручки, которую уносят потерянные заявки, сорванные сроки и простои из-за нехватки материалов.</p>
-          <div class="form calc-form" id="calc" data-unit="заказов" data-niche="Производство" role="group" aria-label="Исходные данные для расчёта">
+          <div class="form calc-form" id="calc" data-unit="заказов" data-niche="Производство" data-mode="crm" role="group" aria-label="Исходные данные для расчёта">
             <div class="calc-mini" aria-hidden="true"><span>Вы теряете</span><strong>~<span id="calc-mini">0</span>&nbsp;₽/мес</strong><span class="calc-mini-gain">вернуть ~<span id="calc-mini-gain">0</span>&nbsp;₽</span></div>
             <div class="range-row">
               <div class="range-head">
@@ -374,7 +374,7 @@
           </div>
           <div class="calc-lines">
             <div class="calc-line"><span>Теряете из-за потерянных и сорванных заказов</span><strong><span id="calc-loss">0</span>&nbsp;₽</strong></div>
-            <div class="calc-line"><span>Ручная рутина стоит</span><strong><span id="calc-routine">0</span>&nbsp;₽</strong></div>
+            <div class="calc-line"><span>Ручная рутина стоит</span><strong><span id="calc-routine">0</span>&nbsp;<span id="calc-routine-unit">₽</span></strong></div>
             <div class="calc-line calc-line-accent"><span>Можно вернуть с системой (оценка)</span><strong><span id="calc-gain">0</span>&nbsp;₽<small>/мес · <span id="calc-gain-year">0</span>&nbsp;₽ в год</small></strong></div>
           </div>
           <a class="btn btn-primary btn-lg btn-block" href="#zayavka" data-goal="Разбор расчёта потерь на аудите" data-calc-cta>Обсудить, как вернуть эти деньги <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
@@ -432,6 +432,7 @@
             <p>Ежедневно в Telegram: новые заказы, выпуск, просрочки, остатки, выручка и маржа.</p>
           </article>
         </div>
+
         <div class="check-grid check-grid-3">
           <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Бэкенд на Rust</h3><p>Быстрый отклик интерфейса и ботов, высокая надёжность и скромные требования к серверу.</p></div></article>
           <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Серверы в России</h3><p>Данные хранятся и обрабатываются в дата-центрах на территории РФ — в соответствии с требованием о локализации персональных данных (152-ФЗ).</p></div></article>
@@ -662,6 +663,10 @@
           </ul>
           <div class="contact-meta">
             <div class="contact-row">
+              <span>Телефон</span>
+              <a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
+            </div>
+            <div class="contact-row">
               <span>Эл. почта</span>
               <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
             </div>
@@ -672,11 +677,11 @@
           </div>
           <div class="other-niches">
             <h3>Другие отраслевые решения</h3>
-            <ul><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники и стоматологии</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
+            <ul><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники и стоматологии</a></li><li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li><li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
           </div>
         </div>
 
-        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST" data-niche="Производство">
+        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST" data-niche="Производство" data-kind="Отрасль">
           <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
@@ -746,16 +751,19 @@
           </ul>
         </div>
         <div>
-          <h3>Решения для отраслей</h3>
+          <h3>Решения</h3>
           <ul>
             <li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li>
             <li><a href="/crm-dlya-kliniki/">CRM для клиники и стоматологии</a></li>
             <li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li>
+            <li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li>
+            <li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li>
           </ul>
         </div>
         <div>
           <h3>Связаться</h3>
           <ul>
+            <li><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a></li>
             <li><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></li>
             <li>Москва, Россия</li>
             <li><a href="/privacy.html">Политика обработки персональных данных</a></li>
@@ -765,7 +773,7 @@
       </div>
       <div class="footer-bottom">
         <span>© 2026 Марк-Тех</span>
-        <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
+        <span class="footer-legal"><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></span>
       </div>
     </div>
   </footer>
