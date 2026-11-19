@@ -25,9 +25,8 @@
   <meta name="twitter:description" content="Заказная разработка программного обеспечения для бизнеса. Москва, работаем по всей России.">
   <meta name="twitter:image" content="https://marktechdev.ru/assets/og-image.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
   <link rel="stylesheet" href="css/styles.css">
 
   <script type="application/ld+json">
@@ -394,13 +393,9 @@
             </div>
           </div>
           <p class="hero-note">Или напишите сразу на <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>.</p>
-          <!-- TODO: приём заявок — см. комментарий у формы #lead-form. Домен сайта: https://marktechdev.ru -->
         </div>
 
-        <form class="form" id="lead-form" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="49974c3a-0dde-40f0-9370-8ce586f2f746">
-          <input type="hidden" name="subject" value="Новая заявка с сайта Марк-Тех">
-          <input type="hidden" name="from_name" value="Сайт marktechdev.ru">
+        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST">
           <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
@@ -415,10 +410,11 @@
             <textarea id="message" name="message" required placeholder="Кратко о задаче, сроках и том, что уже есть"></textarea>
           </div>
           <label class="consent">
-            <input type="checkbox" name="consent" required>
-            <span>Согласен на обработку персональных данных. Подробности — в <a href="privacy.html">политике конфиденциальности</a>.</span>
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Даю <a href="soglasie.html" target="_blank" rel="noopener">согласие на обработку моих персональных данных</a> <span class="req" aria-hidden="true">*</span></span>
           </label>
           <button class="btn btn-primary btn-lg" type="submit">Отправить заявку</button>
+          <p class="form-note">Порядок обработки данных описан в <a href="privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</p>
           <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
         </form>
       </div>
@@ -450,7 +446,8 @@
           <ul>
             <li><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></li>
             <li>Москва, Россия</li>
-            <li><a href="privacy.html">Политика конфиденциальности</a></li>
+            <li><a href="privacy.html">Политика обработки персональных данных</a></li>
+            <li><a href="soglasie.html">Согласие на обработку персональных данных</a></li>
           </ul>
         </div>
       </div>
