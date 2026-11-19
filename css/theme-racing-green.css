@@ -1,0 +1,33 @@
+/* Optional theme: British racing green + antique gold on ivory.
+   Load AFTER css/styles.css. Does not replace the default theme. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
+:root {
+  --bg: #F4EFE6;
+  --fg: #1A1814;
+  --card: #FFFBF4;
+  --primary: #123D2C;
+  --primary-hover: #0B2A1F;
+  --primary-fg: #F4EFE6;
+  --accent: #8A6A2A;
+  --accent-dim: #C6A15B;
+  --accent-ink: #F4EFE6;
+  --secondary: #E8E0D2;
+  --muted: #E9E2D4;
+  --muted-fg: #5F5A52;
+  --border: rgba(26, 24, 20, 0.12);
+  --input: rgba(26, 24, 20, 0.16);
+  --ring: #C6A15B;
+  --danger: #8F2D2D;
+  --shadow-card: 0 25px 50px -12px rgba(18, 61, 44, 0.12);
+  --font-heading: "Cormorant Garamond", "Times New Roman", serif;
+  --link-hover: #123D2C;
+  --placeholder: #8A847A;
+  --glow-warm: #C6A15B;
+}
+
+html { color-scheme: light; }
+
+h1, h2, h3, .logo-name { font-weight: 600; }
+.logo-name { letter-spacing: 0.01em; font-size: 1.3rem; }
+h1 { letter-spacing: -0.025em; }

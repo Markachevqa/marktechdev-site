@@ -1,0 +1,33 @@
+/* Optional theme: Oxford navy + brass gold.
+   Load AFTER css/styles.css. Does not replace the default theme. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
+:root {
+  --bg: #07101C;
+  --fg: #F4EFE6;
+  --card: #10233A;
+  --primary: #C4A15A;
+  --primary-hover: #D4B56E;
+  --primary-fg: #0A1E38;
+  --accent: #C4A15A;
+  --accent-dim: #A88842;
+  --accent-ink: #0A1E38;
+  --secondary: #15263C;
+  --muted: #15243A;
+  --muted-fg: #B7B1A6;
+  --border: rgba(196, 161, 90, 0.22);
+  --input: rgba(244, 239, 230, 0.14);
+  --ring: #C4A15A;
+  --danger: #E07A7A;
+  --shadow-card: 0 25px 50px -12px rgba(196, 161, 90, 0.12);
+  --font-heading: "Cormorant Garamond", "Times New Roman", serif;
+  --link-hover: #E2C98A;
+  --placeholder: #7E7A72;
+  --glow-warm: #C4A15A;
+}
+
+html { color-scheme: dark; }
+
+h1, h2, h3, .logo-name { font-weight: 600; }
+.logo-name { letter-spacing: 0.01em; font-size: 1.3rem; }
+h1 { letter-spacing: -0.025em; }

@@ -1,0 +1,34 @@
+/* Default live theme: charcoal + champagne gold.
+   Already applied in css/styles.css :root. This file is a standalone copy
+   of the same tokens if you need to re-apply it over another base. */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
+
+:root {
+  --bg: #161513;
+  --fg: #F4EFE6;
+  --card: #2A2724;
+  --primary: #D7C4A0;
+  --primary-hover: #EDE0C6;
+  --primary-fg: #161513;
+  --accent: #D7C4A0;
+  --accent-dim: #C4B089;
+  --accent-ink: #161513;
+  --secondary: #2A2724;
+  --muted: #262320;
+  --muted-fg: #B8B0A4;
+  --border: rgba(215, 196, 160, 0.22);
+  --input: rgba(244, 239, 230, 0.14);
+  --ring: #D7C4A0;
+  --danger: #E07A7A;
+  --shadow-card: 0 25px 50px -12px rgba(215, 196, 160, 0.10);
+  --font-heading: "Cormorant Garamond", "Times New Roman", serif;
+  --link-hover: #EDE0C6;
+  --placeholder: #9A9288;
+  --glow-warm: #D7C4A0;
+}
+
+html { color-scheme: dark; }
+
+h1, h2, h3, .logo-name { font-weight: 600; }
+.logo-name { letter-spacing: 0.01em; font-size: 1.3rem; }
+h1 { letter-spacing: -0.025em; }
