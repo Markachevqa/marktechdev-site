@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Интеграция amoCRM и Битрикс24 с 1С — обмен без двойного ввода | Марк-Тех</title>
+  <meta name="description" content="Интеграция CRM с 1С: amoCRM интеграция с 1С, интеграция Битрикс24 с 1С — контрагенты, номенклатура, счета, оплаты и остатки без двойного ввода. Также сайт, телефония, мессенджеры и маркетплейсы. Бесплатный аудит.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Марк-Тех">
+  <link rel="canonical" href="https://marktechdev.ru/integraciya-crm-1s/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Марк-Тех">
+  <meta property="og:title" content="Интеграция amoCRM и Битрикс24 с 1С — один контур, без двойного ввода">
+  <meta property="og:description" content="Настраиваем обмен amoCRM и Битрикс24 с 1С: контрагенты, счета, оплаты, остатки. Мы не партнёры этих вендоров и не продаём лицензии.">
+  <meta property="og:url" content="https://marktechdev.ru/integraciya-crm-1s/">
+  <meta property="og:image" content="https://marktechdev.ru/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Интеграция amoCRM и Битрикс24 с 1С — один контур, без двойного ввода">
+  <meta name="twitter:description" content="Настраиваем обмен amoCRM и Битрикс24 с 1С: контрагенты, счета, оплаты, остатки. Мы не партнёры этих вендоров и не продаём лицензии.">
+  <meta name="twitter:image" content="https://marktechdev.ru/assets/og-image.png">
+
+  <link rel="preload" href="/assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Интеграция amoCRM и Битрикс24 с 1С",
+  "serviceType": "Интеграция CRM с 1С",
+  "description": "Настраиваем интеграцию CRM с 1С: контрагенты, номенклатура, счета, оплаты и остатки — без двойного ввода. Работаем с amoCRM и Битрикс24. Лицензии остаются у вас: мы не партнёры этих вендоров.",
+  "url": "https://marktechdev.ru/integraciya-crm-1s/",
+  "provider": {
+    "@type": "Organization",
+    "name": "Марк-Тех",
+    "url": "https://marktechdev.ru/",
+    "email": "info@marktechdev.ru",
+    "telephone": "+7-985-331-86-05",
+    "logo": "https://marktechdev.ru/assets/logo.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Россия"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "name": "Для компаний, где продажи живут в amoCRM или Битрикс24, а учёт — в 1С, и одни и те же документы вводятся дважды."
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Пакеты внедрения",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Пакет «Старт» (Базовый обмен одного-двух типов документов)",
+        "description": "Аудит CRM и конфигурации 1С; Схема соответствия полей и документов; Обмен контрагентами и счетами или реализациями; Журнал обмена; Пилот в тестовом контуре; Обучение ключевых сотрудников. Срок запуска: срок — после аудита.",
+        "url": "https://marktechdev.ru/integraciya-crm-1s/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Интеграция amoCRM и Битрикс24 с 1С — пакет «Старт»"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Пакет «Бизнес» (Полный контур CRM ↔ 1С)",
+        "description": "Всё из пакета «Старт»; Номенклатура, оплаты и остатки — по задаче; Выверка расхождений; Правила направления обмена; Обучение команды сценариям сверки. Срок запуска: срок — после аудита.",
+        "url": "https://marktechdev.ru/integraciya-crm-1s/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Интеграция amoCRM и Битрикс24 с 1С — пакет «Бизнес»"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Пакет «Под ключ» (Обмен плюс дополнительные интеграции)",
+        "description": "Всё из пакета «Бизнес»; Дополнительно: сайт, телефония, мессенджеры или маркетплейсы — по задаче; Связка с отраслевой CRM или документооборотом «Марк-Тех», если они уже есть; Расширенный журнал и контроль ошибок; Поэтапный запуск без остановки работы; Приёмка по чек-листу. Срок запуска: срок — после аудита.",
+        "url": "https://marktechdev.ru/integraciya-crm-1s/#pakety",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Интеграция amoCRM и Битрикс24 с 1С — пакет «Под ключ»"
+        }
+      }
+    ]
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Вы официальный партнёр amoCRM, Битрикс24 или 1С?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Мы настраиваем интеграцию, но не являемся официальным партнёром этих компаний и не продаём лицензии или подписки. Их заказчик оформляет у вендора или его партнёра; мы работаем с уже купленными (или приобретаемыми вами) продуктами."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Делаете и amoCRM интеграцию с 1С, и интеграцию Битрикс24 с 1С?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, оба сценария. На аудите смотрим, какая CRM и какая конфигурация 1С стоят, и какой обмен уже пробовали. Иногда достаточно донастроить имеющийся модуль, иногда нужен свой контур."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие данные обычно обмениваются?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Чаще всего — контрагенты, номенклатура, счета и реализации, оплаты и остатки. Точный список и направление (из CRM в 1С, обратно или в обе стороны) фиксируем после аудита."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли подключить ещё сайт, телефонию или маркетплейсы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, как дополнительный контур. Сначала закрываем устойчивый обмен CRM и 1С, затем по задаче добавляем сайт, телефонию, мессенджеры или витрины."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит интеграция CRM с 1С?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость и условия рассчитываем индивидуально после бесплатного аудита: она зависит от числа сотрудников и точек, нужных модулей и интеграций. Состав работ и сроки фиксируем в договоре."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужно ли останавливать продажи или бухгалтерию?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Сначала поднимаем обмен в тестовом контуре, затем включаем его порциями."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "У вас нет сертификатов вендоров — почему вам доверять?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Честно: «Марк-Тех» — молодая компания, отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых трёх компаний в отрасли — специальные условия. Не претендуем на статус партнёра amoCRM, Битрикс24 или 1С: оценивайте нас по составу работ в договоре и приёмке по чек-листу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что будет, если обмен внезапно остановится?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Оставляем журнал ошибок и понятный статус. Как именно сопровождать систему после запуска — обсуждаем индивидуально, без заранее прописанных обещаний поддержки на сайте."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Марк-Тех",
+      "item": "https://marktechdev.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Интеграция CRM и 1С",
+      "item": "https://marktechdev.ru/integraciya-crm-1s/"
+    }
+  ]
+}
+  </script>
+</head>
+<body class="landing">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/" aria-label="Марк-Тех — на главную">
+        <img src="/assets/logo.svg" width="32" height="32" alt="">
+        <span class="logo-name">Марк-Тех</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a href="/uslugi">Услуги</a>
+        <a href="/kak-rabotaem">Как работаем</a>
+        <a href="/preimushchestva">Преимущества</a>
+        <a href="/tehnologii">Технологии</a>
+        <a href="/voprosy">Вопросы</a>
+        <a href="/kontakty">Контакты</a>
+      </nav>
+      <div class="header-cta">
+        <a class="header-phone" href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
+        <a class="btn btn-primary" href="#zayavka">Бесплатный аудит</a>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span>Интеграция CRM и 1С</span></nav>
+          <div class="badge">
+            <span class="badge-dot" aria-hidden="true"></span>
+            Специальные условия для первых 3 клиентов в отрасли
+          </div>
+          <h1>Интеграция amoCRM и Битрикс24 с 1С — один контур, без двойного ввода</h1>
+          <p class="lead">Настраиваем интеграцию CRM с 1С: контрагенты, номенклатура, счета, оплаты и остатки синхронизируются, сверки занимают минуты, а не вечера. Работаем с amoCRM и Битрикс24, а также с сайтом, телефонией, мессенджерами и маркетплейсами. Мы не официальный партнёр amoCRM, Битрикс24 или 1С: лицензии и подписки остаются у вас, мы настраиваем обмен.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">
+              Бесплатный аудит за 30 минут
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#kalkulyator">Посчитать потери</a>
+          </div>
+          <ul class="hero-points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Бесплатный аудит текущих баз</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Сроки и объём — в договоре</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Без остановки продаж и учёта</li>
+          </ul>
+          <div class="hero-tags"><span class="float-tag">amoCRM и 1С</span><span class="float-tag">Битрикс24 и 1С</span><span class="float-tag">Контрагенты и счета</span><span class="float-tag">Оплаты и остатки</span><span class="float-tag">Журнал обмена</span></div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="glow glow-a"></div>
+          <div class="glow glow-b"></div>
+          <div class="system-card report-card">
+            <div class="system-card-head">
+              <strong>Обмен CRM ↔ 1С · день</strong>
+              <div class="status-pills"><i></i><i></i><i></i></div>
+            </div>
+            <p class="report-kicker">Пример сводки обмена, цифры условные</p>
+            <div class="report-row"><span>Контрагентов синхронизировано</span><strong>36</strong></div><div class="report-row"><span>Счетов ушло в 1С</span><strong>22</strong></div><div class="report-row"><span>Оплат подтянуто в CRM</span><strong>18</strong></div><div class="report-row"><span>Расхождений остатков</span><strong>1</strong></div><div class="report-row"><span>Ошибок обмена</span><strong>0</strong></div>
+            <p class="report-note">Пример вида отчёта, цифры условные</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="problemy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Проблемы</span>
+          <h2>CRM продаёт, 1С учитывает — а данные вводятся дважды?</h2>
+          <p>Сделка закрыта в CRM, а в 1С её ещё нет. Оплаты не бьются со счетами, остатки разъезжаются, сверка занимает вечер.</p>
+        </div>
+        <div class="pain-grid">
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Двойной ввод</h3><p>Менеджер заводит счёт в CRM, бухгалтер — тот же документ в 1С. Ошибки всплывают при закрытии месяца.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Оплаты не сходятся</h3><p>Поступление есть в банке или в 1С, а в воронке сделка всё ещё «ждёт оплату».</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Остатки и номенклатура разъезжаются</h3><p>В CRM продали то, чего уже нет на складе в 1С — или наоборот.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Контрагенты в двух базах</h3><p>Реквизиты правят в одном месте и забывают в другом, появляются дубли.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Непонятно, где сломался обмен</h3><p>Модуль «вроде стоит», но нет журнала: кто виноват и что перезапустить.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>Сайт и витрины отдельно</h3><p>Заказы с сайта или маркетплейса снова заносят руками.</p></div>
+          </article>
+        </div>
+        <div class="agitate">
+          <p>Менеджер закрыл сделку в amoCRM или Битрикс24, бухгалтер заново заводит её в 1С. Оплаты «не бьются», остатки разъезжаются, сверка съедает часы. Это не особенность программ — это незакрытый обмен.</p>
+          <a class="btn btn-primary" href="#kalkulyator">Посчитать, сколько это стоит вам <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kalkulyator">
+      <div class="container calc-grid">
+        <div>
+          <span class="kicker">Калькулятор</span>
+          <h2>Сколько стоит двойной ввод между CRM и 1С</h2>
+          <p class="subhead">Подставьте, сколько людей и часов уходит на повторный ввод и сверки — калькулятор покажет порядок потерь в месяц и в год.</p>
+          <div class="form calc-form" id="calc" data-unit="сотрудников" data-niche="Интеграция CRM и 1С" data-mode="hours" role="group" aria-label="Исходные данные для расчёта">
+            <div class="calc-mini" aria-hidden="true"><span>Вы теряете</span><strong>~<span id="calc-mini">0</span>&nbsp;₽/мес</strong><span class="calc-mini-gain">вернуть ~<span id="calc-mini-gain">0</span>&nbsp;₽</span></div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-staff">Сотрудников, которые вводят данные и в CRM, и в 1С</label>
+                <span class="range-val"><input id="calc-staff-num" data-calc-num="staff" type="number" inputmode="numeric" min="0" step="1" value="3" aria-label="Сотрудников, которые вводят данные и в CRM, и в 1С"><span class="range-unit">чел.</span></span>
+              </div>
+              <input id="calc-staff" class="range" data-calc="staff" type="range" min="1" max="50" step="1" value="3">
+              <div class="range-scale" aria-hidden="true"><span>1</span><span>50+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-h">Часов в неделю на двойной ввод и сверки (на одного)</label>
+                <span class="range-val"><input id="calc-h-num" data-calc-num="h" type="number" inputmode="numeric" min="0" step="1" value="6" aria-label="Часов в неделю на двойной ввод и сверки (на одного)"><span class="range-unit">ч</span></span>
+              </div>
+              <input id="calc-h" class="range" data-calc="h" type="range" min="0" max="40" step="1" value="6">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>40+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-r">Какую долю этой рутины реально снять обменом</label>
+                <span class="range-val"><input id="calc-r-num" data-calc-num="r" type="number" inputmode="numeric" min="0" step="5" value="60" aria-label="Какую долю этой рутины реально снять обменом"><span class="range-unit">%</span></span>
+              </div>
+              <input id="calc-r" class="range" data-calc="r" type="range" min="0" max="90" step="5" value="60">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>90+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="calc-rate">Стоимость часа сотрудника</label>
+                <span class="range-val"><input id="calc-rate-num" data-calc-num="rate" type="number" inputmode="numeric" min="0" step="50" value="600" aria-label="Стоимость часа сотрудника"><span class="range-unit">₽</span></span>
+              </div>
+              <input id="calc-rate" class="range" data-calc="rate" type="range" min="200" max="5000" step="50" value="600">
+              <div class="range-scale" aria-hidden="true"><span>200</span><span>5 000+</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="calc-result" aria-live="polite">
+          <p class="calc-big-label">Вы теряете примерно</p>
+          <p class="calc-big"><span id="calc-total">0</span><span class="calc-cur">&nbsp;₽</span><span class="calc-per">в месяц</span></p>
+          <p class="calc-year">≈ <strong id="calc-total-year">0</strong>&nbsp;₽ в год</p>
+          <div class="calc-bar" aria-hidden="true">
+            <div class="calc-bar-track"><div class="calc-bar-loss" id="calc-bar-loss"></div><div class="calc-bar-gain" id="calc-bar-gain"></div></div>
+            <div class="calc-legend"><span><i class="lg-loss"></i>Потери</span><span><i class="lg-gain"></i>Можно вернуть с системой</span></div>
+          </div>
+          <div class="calc-lines">
+            <div class="calc-line"><span>Двойной ввод и сверки стоят</span><strong><span id="calc-loss">0</span>&nbsp;₽</strong></div>
+            <div class="calc-line"><span>Часов в месяц на это уходит</span><strong><span id="calc-routine">0</span>&nbsp;<span id="calc-routine-unit">₽</span></strong></div>
+            <div class="calc-line calc-line-accent"><span>Можно вернуть с системой (оценка)</span><strong><span id="calc-gain">0</span>&nbsp;₽<small>/мес · <span id="calc-gain-year">0</span>&nbsp;₽ в год</small></strong></div>
+          </div>
+          <a class="btn btn-primary btn-lg btn-block" href="#zayavka" data-goal="Разбор расчёта потерь на аудите" data-calc-cta>Обсудить, как вернуть эти деньги <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="calc-assume"><strong>Это оценка, а не обещание.</strong> Формула: часы в месяц = сотрудники × часы в неделю × 4,33; потери = часы × стоимость часа; «можно вернуть» = потери × указанную долю (обмен снимает повторный ввод, но не всю работу в CRM и 1С). Реальные цифры разберём на аудите.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="vozmozhnosti">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Что получите</span>
+          <h2>Что синхронизируем</h2>
+          <p>Настраиваем интеграцию CRM с 1С: контрагенты, номенклатура, счета, оплаты и остатки — без двойного ввода. Работаем с amoCRM и Битрикс24. Лицензии остаются у вас: мы не партнёры этих вендоров.</p>
+        </div>
+        <div class="cards cards-4">
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+            <h3>Контрагенты</h3>
+            <p>Создание и обновление карточек между CRM и 1С, чтобы реквизиты не плодились в двух базах.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 12h6M9 16h4"/></svg></div>
+            <h3>Номенклатура</h3>
+            <p>Товары и услуги, цены и единицы — в согласованном направлении обмена.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <h3>Счета и реализации</h3>
+            <p>Документы из сделки в CRM уходят в 1С без повторного набора.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
+            <h3>Оплаты</h3>
+            <p>Поступления подтягиваются к счетам и статусам сделок.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Остатки</h3>
+            <p>Актуальные остатки доступны там, где ими пользуются менеджеры — по согласованной схеме.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+            <h3>Журнал обмена</h3>
+            <p>Видно, что ушло и пришло, где ошибка и что нужно исправить.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div>
+            <h3>Сайт, телефония, мессенджеры, маркетплейсы</h3>
+            <p>Дополнительный контур по задаче — после устойчивого обмена CRM и 1С.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6"/></svg></div>
+            <h3>Пилотный контур</h3>
+            <p>Сначала тестовый обмен, затем запуск порциями, без остановки продаж и учёта.</p>
+          </article>
+        </div>
+        <p class="analog-note">Если 1С ещё нужно настроить или доработать, смотрите <a href="/vnedrenie-1s/">внедрение 1С</a>. Если готовая CRM уже не подходит — <a href="/crm-na-zakaz/">разработку CRM на заказ</a>. Для отраслевых контуров: <a href="/crm-dlya-avtoservisa/">автосервис</a>, <a href="/crm-dlya-kliniki/">клиника</a>, <a href="/programma-dlya-stomatologii/">стоматология</a>, <a href="/crm-dlya-proizvodstva/">производство</a> и <a href="/dokumentooborot/">документооборот</a>.</p>
+        <div class="check-grid check-grid-3">
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Обмен с amoCRM и Битрикс24</h3><p>Работаем с API и типовыми механизмами этих систем. Не являемся официальным партнёром вендоров и не продаём их лицензии.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>1С по согласованию</h3><p>Бухгалтерия, УНФ, УТ и другие конфигурации — исходя из того, что у вас установлено. Лицензии 1С приобретает заказчик у «1С» или партнёра.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Направление обмена</h3><p>Согласуем, что является источником для контрагентов, счетов, оплат и остатков, чтобы не затирать данные.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Журнал и контроль</h3><p>Видно, какие документы ушли и пришли, где ошибка и что перезапустить.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Другие интеграции</h3><p>По задаче подключаем сайт, телефонию, мессенджеры и маркетплейсы — как второй контур, не вместо обмена с 1С.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Без остановки работы</h3><p>Сначала тестовый контур, затем запуск порциями. Продажи в CRM и учёт в 1С не останавливаем.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <aside class="note-box" aria-label="Про партнёрство и лицензии">
+          <h2>Про партнёрство и лицензии</h2>
+          <p>Мы настраиваем интеграцию amoCRM и Битрикс24 с 1С, но не являемся официальным партнёром amoCRM, «1С-Битрикс» / Битрикс24 или фирмы «1С» и не продаём лицензии и подписки. Их заказчик приобретает у вендора или его партнёра. Иногда на аудите выясняется, что достаточно донастроить уже купленный модуль обмена — в таком случае не предлагаем лишнюю разработку.</p>
+        </aside>
+      </div>
+    </section>
+    <section class="section" id="pakety">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Пакеты</span>
+          <h2>Пакеты внедрения: Интеграция CRM и 1С</h2>
+          <p class="pkg-lead">Стоимость и условия рассчитываем индивидуально после бесплатного аудита.</p>
+          <p>Пакеты — это ориентир по составу работ: итоговый набор модулей подбираем под ваш процесс, а объём и сроки фиксируем в договоре.</p>
+        </div>
+        <div class="price-grid">
+          <article class="price-card">
+
+            <h3>Старт</h3>
+            <p class="price-for">Базовый обмен одного-двух типов документов</p>
+            <p class="pkg-term">Срок запуска: срок — после аудита</p>
+            <ul><li>Аудит CRM и конфигурации 1С</li><li>Схема соответствия полей и документов</li><li>Обмен контрагентами и счетами или реализациями</li><li>Журнал обмена</li><li>Пилот в тестовом контуре</li><li>Обучение ключевых сотрудников</li></ul>
+            <a class="btn btn-ghost btn-block" href="#zayavka" data-package="Старт" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+          <article class="price-card price-card-featured">
+            <span class="price-badge">Рекомендуем</span>
+            <h3>Бизнес</h3>
+            <p class="price-for">Полный контур CRM ↔ 1С</p>
+            <p class="pkg-term">Срок запуска: срок — после аудита</p>
+            <ul><li>Всё из пакета «Старт»</li><li>Номенклатура, оплаты и остатки — по задаче</li><li>Выверка расхождений</li><li>Правила направления обмена</li><li>Обучение команды сценариям сверки</li></ul>
+            <a class="btn btn-primary btn-block" href="#zayavka" data-package="Бизнес" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+          <article class="price-card">
+
+            <h3>Под ключ</h3>
+            <p class="price-for">Обмен плюс дополнительные интеграции</p>
+            <p class="pkg-term">Срок запуска: срок — после аудита</p>
+            <ul><li>Всё из пакета «Бизнес»</li><li>Дополнительно: сайт, телефония, мессенджеры или маркетплейсы — по задаче</li><li>Связка с отраслевой CRM или документооборотом «Марк-Тех», если они уже есть</li><li>Расширенный журнал и контроль ошибок</li><li>Поэтапный запуск без остановки работы</li><li>Приёмка по чек-листу</li></ul>
+            <a class="btn btn-ghost btn-block" href="#zayavka" data-package="Под ключ" data-goal="Расчёт стоимости">Рассчитать стоимость</a>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section section-tight" id="pilot">
+      <div class="container">
+        <div class="pilot-box">
+          <div>
+            <span class="kicker">Ограниченное предложение</span>
+            <h2>Специальные условия для первых 3 клиентов в отрасли</h2>
+            <ul class="pilot-list"><li>особые условия внедрения для первых трёх компаний в каждой отрасли</li><li>взамен — регулярная обратная связь по работе системы</li></ul>
+            <p class="pilot-note">Условия обсуждаем индивидуально на аудите. После третьего договора в отрасли предложение закрывается.</p>
+          </div>
+          <div class="pilot-cta">
+            <a class="btn btn-primary btn-lg" href="#zayavka" data-goal="Специальные условия для первых клиентов">Узнать условия <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="besplatno">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Бесплатно</span>
+          <h2>Три способа оценить систему без затрат</h2>
+          <p>Ничего не продаём на первом шаге: сначала разбираемся, подходит ли вам система.</p>
+        </div>
+        <div class="cards cards-3">
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+            <h3>Аудит процессов за 30 минут</h3>
+            <p>Созвон с основателем: какие CRM и конфигурация 1С стоят, что уже обменивается, где двойной ввод. Честно скажем, хватит ли типового коннектора или нужен свой обмен.</p>
+            <a class="btn btn-primary" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Записаться на аудит</a>
+          </article>
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6"/></svg></div>
+            <h3>Демо на ваших данных</h3>
+            <p>Пришлите обезличенную выгрузку из Excel или пару примеров документов без персональных данных — покажем, как ваш процесс будет выглядеть в системе.</p>
+            <a class="btn btn-ghost" href="#zayavka" data-goal="Демо на наших данных">Запросить демо</a>
+          </article>
+          <article class="card magnet">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 3H8z"/><rect x="5" y="6" width="14" height="15" rx="2"/><path d="M9 12h6M9 16h4"/></svg></div>
+            <h3>Коммерческое предложение в PDF</h3>
+            <p>5 страниц: боли отрасли, модули, этапы внедрения и пакеты. Удобно показать партнёру или управляющему.</p>
+            <a class="btn btn-ghost" href="/assets/kp/kp-integraciya-crm-1s.pdf" download>Скачать КП (PDF)</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sravnenie">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Сравнение</span>
+          <h2>Ручной ввод, готовый коннектор или настроенный обмен</h2>
+          <p>У каждого варианта есть своё место. Сравнение — по типичным условиям; конкретные коробочные продукты отличаются функциями.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="compare">
+            <thead><tr><th scope="col">Критерий</th><th scope="col">Двойной ввод вручную</th><th scope="col">Типовой коннектор / модуль</th><th scope="col" class="col-us">Марк-Тех</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Двойной ввод</th><td>Сделки и счета заводят и в CRM, и в 1С</td><td>Часто снижается, если коннектор закрывает ваш сценарий</td><td class="col-us">Обмен настраиваем под ваши документы и поля</td></tr><tr><th scope="row">Состав обмена</th><td>Кто как успеет перенести</td><td>Типовой набор объектов модуля</td><td class="col-us">Контрагенты, номенклатура, счета, оплаты, остатки — по согласованному списку</td></tr><tr><th scope="row">Ошибки и сверка</th><td>Ищут руками в двух системах</td><td>Зависит от модуля и его журнала</td><td class="col-us">Журнал обмена и понятный статус расхождений</td></tr><tr><th scope="row">Сайт и другие сервисы</th><td>Ещё одни выгрузки вручную</td><td>Иногда есть готовые связки</td><td class="col-us">По задаче: сайт, телефония, мессенджеры, маркетплейсы</td></tr><tr><th scope="row">Лицензии</th><td>Уже куплены или нет</td><td>Лицензии CRM, 1С и модуля — у вендоров</td><td class="col-us">Приобретает заказчик у вендоров; мы не продаём лицензии и не являемся их партнёром</td></tr><tr><th scope="row">Когда подходит</th><td>Мало документов, сверка раз в месяц</td><td>Сценарий совпадает с типовым коннектором</td><td class="col-us">Нужен устойчивый обмен под ваш процесс, а не «включить и надеяться»</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="etapy">
+      <div class="container process">
+        <div class="process-intro">
+          <span class="kicker">Этапы</span>
+          <h2>Как настраиваем интеграцию CRM с 1С</h2>
+          <p class="subhead">Сначала смотрим обе базы и согласуем, какие поля и документы едут в какую сторону. Затем пилотный обмен в тестовом контуре и запуск порциями, без остановки работы.</p>
+          <a class="btn btn-primary" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Начать с бесплатного аудита</a>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">00</span>
+            <div><h3>Аудит <span class="step-time">1–2 дня</span></h3><p>Разбираем amoCRM или Битрикс24 и вашу 1С: документы, поля, направление обмена, уже установленные модули. Фиксируем объём и срок.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">01</span>
+            <div><h3>Схема и прототип <span class="step-time">после аудита</span></h3><p>Согласуем соответствие объектов и поднимаем пилотный обмен в тестовом контуре.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <div><h3>Настройка обмена <span class="step-time">по плану</span></h3><p>Контрагенты, номенклатура, счета, оплаты, остатки — то, что вошло в задачу. Основная работа менеджеров и бухгалтерии не останавливается.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <div><h3>Проверка и журнал <span class="step-time">по плану</span></h3><p>Выверяем расхождения, настраиваем журнал ошибок и понятный статус: что ушло, что пришло, где сбой.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">04</span>
+            <div><h3>Запуск и обучение <span class="step-time">приёмка</span></h3><p>Показываем сценарии команде и сдаём работы по чек-листу.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="garantii">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Гарантии</span>
+          <h2>Честно и прозрачно</h2>
+          <p>«Марк-Тех» — молодая компания: публичного портфолио и отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых клиентов в отрасли — специальные условия.</p>
+        </div>
+        <div class="check-grid check-grid-3">
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Сроки и объём — в договоре</h3><p>После аудита фиксируем в договоре состав работ, этапы и срок запуска.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Приёмка по чек-листу</h3><p>Заранее согласуем, что считается результатом, и сдаём систему по чек-листу.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Без остановки работы</h3><p>На время обучения система работает параллельно со старой схемой.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Выгрузка данных</h3><p>Все данные можно выгрузить в Excel/CSV в любой момент — они остаются вашими.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Данные — в РФ</h3><p>Хранение и обработка на серверах в России, с учётом требований 152-ФЗ.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Связь напрямую с разработчиком</h3><p>Вы общаетесь с разработчиками и основателем — без цепочки менеджеров.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="voprosy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">FAQ</span>
+          <h2>Частые вопросы: Интеграция CRM и 1С</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Вы официальный партнёр amoCRM, Битрикс24 или 1С?</summary>
+            <div class="faq-body"><p>Нет. Мы настраиваем интеграцию, но не являемся официальным партнёром этих компаний и не продаём лицензии или подписки. Их заказчик оформляет у вендора или его партнёра; мы работаем с уже купленными (или приобретаемыми вами) продуктами.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Делаете и amoCRM интеграцию с 1С, и интеграцию Битрикс24 с 1С?</summary>
+            <div class="faq-body"><p>Да, оба сценария. На аудите смотрим, какая CRM и какая конфигурация 1С стоят, и какой обмен уже пробовали. Иногда достаточно донастроить имеющийся модуль, иногда нужен свой контур.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Какие данные обычно обмениваются?</summary>
+            <div class="faq-body"><p>Чаще всего — контрагенты, номенклатура, счета и реализации, оплаты и остатки. Точный список и направление (из CRM в 1С, обратно или в обе стороны) фиксируем после аудита.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Можно ли подключить ещё сайт, телефонию или маркетплейсы?</summary>
+            <div class="faq-body"><p>Да, как дополнительный контур. Сначала закрываем устойчивый обмен CRM и 1С, затем по задаче добавляем сайт, телефонию, мессенджеры или витрины.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Сколько стоит интеграция CRM с 1С?</summary>
+            <div class="faq-body"><p>Стоимость и условия рассчитываем индивидуально после бесплатного аудита: она зависит от числа сотрудников и точек, нужных модулей и интеграций. Состав работ и сроки фиксируем в договоре.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Нужно ли останавливать продажи или бухгалтерию?</summary>
+            <div class="faq-body"><p>Нет. Сначала поднимаем обмен в тестовом контуре, затем включаем его порциями.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>У вас нет сертификатов вендоров — почему вам доверять?</summary>
+            <div class="faq-body"><p>Честно: «Марк-Тех» — молодая компания, отраслевых кейсов у нас пока нет. Поэтому снижаем ваш риск: сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу, а для первых трёх компаний в отрасли — специальные условия. Не претендуем на статус партнёра amoCRM, Битрикс24 или 1С: оценивайте нас по составу работ в договоре и приёмке по чек-листу.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Что будет, если обмен внезапно остановится?</summary>
+            <div class="faq-body"><p>Оставляем журнал ошибок и понятный статус. Как именно сопровождать систему после запуска — обсуждаем индивидуально, без заранее прописанных обещаний поддержки на сайте.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="zayavka">
+      <div class="container contact-grid">
+        <div>
+          <span class="kicker">Заявка</span>
+          <h2>Получите бесплатный аудит и расчёт для вашего бизнеса</h2>
+          <p class="subhead">Оставьте контакт — ответим в течение рабочего дня, договоримся о 30-минутном созвоне и рассчитаем стоимость под ваши задачи. Ни к чему не обязывает.</p>
+          <ul class="hero-points hero-points-col">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Честно скажем, если вам лучше подойдёт готовая программа</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Специальные условия для первых 3 клиентов в отрасли</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Стоимость рассчитываем индивидуально после аудита</li>
+          </ul>
+          <div class="contact-meta">
+            <div class="contact-row">
+              <span>Телефон</span>
+              <a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
+            </div>
+            <div class="contact-row">
+              <span>Эл. почта</span>
+              <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
+            </div>
+            <div class="contact-row">
+              <span>Коммерческое предложение</span>
+              <a href="/assets/kp/kp-integraciya-crm-1s.pdf" download>Скачать КП в PDF</a>
+            </div>
+          </div>
+          <div class="other-niches">
+            <h3>Другие отраслевые решения</h3>
+            <ul><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li><li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li><li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li><li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li><li><a href="/crm-na-zakaz/">CRM на заказ</a></li><li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
+          </div>
+        </div>
+
+        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST" data-niche="Интеграция CRM и 1С" data-kind="Решение">
+          <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="form-row">
+            <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
+          </div>
+          <div class="form-row">
+            <label for="contact-field">Телефон или эл. почта <span class="req" aria-hidden="true">*</span></label>
+            <input id="contact-field" name="contact" type="text" autocomplete="tel" required placeholder="Телефон или email для ответа">
+          </div>
+          <div class="form-row form-row-2">
+            <div>
+              <label for="lead-goal">Что интересует</label>
+              <select id="lead-goal" data-lead="goal">
+                <option value="Бесплатный аудит процессов (30 минут)">Бесплатный аудит (30 минут)</option>
+                <option value="Демо на наших данных">Демо на наших данных</option>
+                <option value="Специальные условия для первых клиентов">Специальные условия для первых клиентов</option>
+                <option value="Разбор расчёта потерь на аудите">Разбор расчёта потерь</option>
+                <option value="Расчёт стоимости">Расчёт стоимости</option>
+              </select>
+            </div>
+            <div>
+              <label for="lead-package">Пакет</label>
+              <select id="lead-package" data-lead="package">
+                <option value="Не знаю, нужна консультация">Не знаю — подскажите</option>
+                <option value="Старт">Старт — Базовый обмен одного-двух типов документов</option><option value="Бизнес">Бизнес — Полный контур CRM ↔ 1С</option><option value="Под ключ">Под ключ — Обмен плюс дополнительные интеграции</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="message">Комментарий</label>
+            <textarea id="message" name="message" placeholder="Например: amoCRM и 1С:Бухгалтерия, счета заводим дважды, нужны оплаты и остатки"></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Даю <a href="/soglasie.html" target="_blank" rel="noopener">согласие на обработку моих персональных данных</a> <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Получить бесплатный аудит</button>
+          <p class="form-note">Порядок обработки данных описан в <a href="/privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</p>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn btn-primary btn-block" href="#zayavka" data-goal="Бесплатный аудит процессов (30 минут)">Бесплатный аудит за 30 минут</a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid footer-grid-4">
+        <div>
+          <a class="footer-brand" href="/">
+            <img src="/assets/logo.svg" width="28" height="28" alt="">
+            Марк-Тех
+          </a>
+          <p>Заказная разработка программного обеспечения для бизнеса. Москва, проекты по всей России.</p>
+        </div>
+        <div>
+          <h3>Разделы</h3>
+          <ul>
+            <li><a href="/uslugi">Услуги</a></li>
+            <li><a href="/kak-rabotaem">Как работаем</a></li>
+            <li><a href="/preimushchestva">Преимущества</a></li>
+            <li><a href="/voprosy">Вопросы</a></li>
+            <li><a href="/kontakty">Оставить заявку</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Решения</h3>
+          <ul>
+            <li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li>
+            <li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li>
+            <li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li>
+            <li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li>
+            <li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li>
+            <li><a href="/crm-na-zakaz/">CRM на заказ</a></li>
+            <li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li>
+            <li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Связаться</h3>
+          <ul>
+            <li><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a></li>
+            <li><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></li>
+            <li>Москва, Россия</li>
+            <li><a href="/privacy.html">Политика обработки персональных данных</a></li>
+            <li><a href="/soglasie.html">Согласие на обработку персональных данных</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Марк-Тех</span>
+        <span class="footer-legal"><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>
