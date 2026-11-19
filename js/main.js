@@ -64,3 +64,26 @@
       .then(function () { if (btn) { btn.disabled = false; } });
   });
 })();
+
+// Чистый адрес: якорные ссылки прокручивают страницу без #... в адресной строке
+(function () {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var url = new URL(a.getAttribute('href'), location.href);
+    if (url.origin !== location.origin || url.pathname.replace(/index\.html$/, '') !== location.pathname.replace(/index\.html$/, '')) return;
+    if (!url.hash) return;
+    var el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
+    if (!el) return;
+    e.preventDefault();
+    el.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+  });
+  window.addEventListener('load', function () {
+    if (location.hash || /index\.html$/.test(location.pathname)) {
+      var el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (el) el.scrollIntoView();
+      history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+    }
+  });
+})();
