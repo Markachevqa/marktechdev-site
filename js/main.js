@@ -65,25 +65,40 @@
   });
 })();
 
-// Чистый адрес: якорные ссылки прокручивают страницу без #... в адресной строке
+// Короткие адреса разделов: /uslugi, /kontakty и т.д.
 (function () {
+  var map = {"services": "uslugi", "process": "kak-rabotaem", "advantages": "preimushchestva", "stack": "tehnologii", "faq": "voprosy", "contact": "kontakty"};
+  var rev = {}; Object.keys(map).forEach(function (k) { rev[map[k]] = k; });
+  function slug(p) { return p.replace(/^\/|\/$/g, '').replace(/index\.html$/, ''); }
+  function go(id, smooth) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+  }
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a[href]');
     if (!a) return;
     var url = new URL(a.getAttribute('href'), location.href);
-    if (url.origin !== location.origin || url.pathname.replace(/index\.html$/, '') !== location.pathname.replace(/index\.html$/, '')) return;
-    if (!url.hash) return;
-    var el = document.getElementById(decodeURIComponent(url.hash.slice(1)));
-    if (!el) return;
+    if (url.origin !== location.origin) return;
+    var s = slug(url.pathname);
+    var onMain = !!document.getElementById('services');
+    if (!onMain) return;
+    var id = rev[s] || (url.hash && url.hash.slice(1)) || (s === '' ? 'top' : null);
+    if (!id || !document.getElementById(id)) return;
     e.preventDefault();
-    el.scrollIntoView({ behavior: 'smooth' });
-    history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+    go(id, true);
+    history.pushState({ id: id }, '', s ? '/' + s : '/');
+  });
+  window.addEventListener('popstate', function () {
+    var s = slug(location.pathname); go(rev[s] || 'top', true);
   });
   window.addEventListener('load', function () {
-    if (location.hash || /index\.html$/.test(location.pathname)) {
-      var el = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if (el) el.scrollIntoView();
-      history.replaceState(null, '', location.pathname.replace(/index\.html$/, ''));
+    var s = slug(location.pathname);
+    var id = rev[s] || (location.hash && location.hash.slice(1));
+    if (location.hash && map[location.hash.slice(1)]) {
+      history.replaceState(null, '', '/' + map[location.hash.slice(1)]);
+    } else if (/index\.html$/.test(location.pathname)) {
+      history.replaceState(null, '', '/');
     }
+    if (id) go(id, false);
   });
 })();
