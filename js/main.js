@@ -49,7 +49,7 @@
     var name = (form.elements.namedItem("name") || {}).value || "";
     var contact = (form.elements.namedItem("contact") || {}).value || "";
     var message = (form.elements.namedItem("message") || {}).value || "";
-    var email = "yumarkachev@yandex.ru";
+    var email = "info@marktechdev.ru";
 
     var body =
       "Имя: " + name + "\n" +
