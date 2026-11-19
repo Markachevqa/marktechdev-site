@@ -1002,6 +1002,25 @@ h3 {
 .legal h1 { font-size: clamp(1.8rem, 4vw, 2.4rem); }
 .legal p, .legal li { color: var(--muted-fg); }
 .legal a { color: var(--accent); }
+.legal h2 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin-top: 2.25rem; }
+.legal ul { padding-left: 1.2rem; }
+.legal li { margin-bottom: 0.35rem; }
+.legal .legal-meta { font-size: 0.875rem; }
+.legal .legal-nav { margin-top: 2.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+.ph {
+  padding: 0 0.3em;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--accent) 22%, transparent);
+  color: var(--fg);
+  white-space: nowrap;
+}
+.form-note {
+  margin: 0.75rem 0 0;
+  color: var(--muted-fg);
+  font-size: 0.8rem;
+}
+.form-note a { color: var(--accent); }
+.footer-legal { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
