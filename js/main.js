@@ -193,7 +193,7 @@
         total = loss;
         gain = loss * 0.5;
         last = { loss: loss, routine: routine, total: total, gain: gain, hours: hours, staff: vals.staff || 0, docs: vals.docs || 0, minutes: vals.minutes || 0, rate: vals.rate || 0, mode: mode };
-      } else if (mode === "onec") {
+      } else if (mode === "onec" || mode === "hours") {
         var hours = (vals.staff || 0) * (vals.h || 0) * 4.33;
         loss = hours * (vals.rate || 0);
         routine = hours;
@@ -214,7 +214,7 @@
       animate("calc-loss", loss);
       animate("calc-routine", routine);
       var ru = document.getElementById("calc-routine-unit");
-      if (ru) ru.textContent = (mode === "docflow" || mode === "onec") ? "ч" : "₽";
+      if (ru) ru.textContent = (mode === "docflow" || mode === "onec" || mode === "hours") ? "ч" : "₽";
       animate("calc-gain", gain);
       animate("calc-gain-year", gain * 12);
       var bl = document.getElementById("calc-bar-loss"), bg = document.getElementById("calc-bar-gain");
@@ -233,7 +233,7 @@
           " документов в месяц на сотрудника, " + fmtN(vals.minutes || 0) + " мин на документ, ставка " + fmtN(vals.rate || 0) +
           " ₽/ч. Оценка потерь — ~" + fmtN(last.total) + " ₽ в месяц (~" + fmtN(last.total * 12) +
           " ₽ в год), можно вернуть ~" + fmtN(last.gain) + " ₽ в месяц. Хочу обсудить, как вернуть эти деньги.";
-      } else if (last.mode === "onec") {
+      } else if (last.mode === "onec" || last.mode === "hours") {
         text = "Расчёт с калькулятора на сайте: " + fmtN(vals.staff || 0) + " сотрудников, " + fmtN(vals.h || 0) +
           " ч/нед на ручной ввод и сверки (на одного), ставка " + fmtN(vals.rate || 0) + " ₽/ч, доля, которую реально снять, " +
           fmtN(vals.r || 0) + "%. Оценка потерь — ~" + fmtN(last.total) + " ₽ в месяц (~" + fmtN(last.total * 12) +
