@@ -1302,3 +1302,37 @@ main section[id] { scroll-margin-top: calc(var(--header-h) + 0.75rem); }
   .calc-mini strong { font-family: var(--font-heading); font-size: 1.35rem; color: var(--accent); font-variant-numeric: tabular-nums; }
   .calc-mini-gain { margin-left: auto; font-size: 0.78rem; }
 }
+
+
+/* Company phone in header */
+.header-phone {
+  color: var(--fg);
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+  font-variant-numeric: tabular-nums;
+  text-decoration: none;
+}
+.header-phone:hover { color: var(--accent); }
+@media (max-width: 859px) {
+  .header-phone { font-size: 0.875rem; }
+}
+@media (min-width: 860px) and (max-width: 1180px) {
+  .header-phone { font-size: 0.875rem; }
+  .nav { gap: 0.7rem; }
+}
+
+/* Main page: 5 solution cards */
+@media (min-width: 640px) { .cards.cards-solutions { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .cards.cards-solutions { grid-template-columns: repeat(3, 1fr); } }
+
+.analog-note {
+  margin: 1.5rem 0 0;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 0.75rem;
+  background: var(--card);
+  color: var(--muted-fg);
+}
+.analog-note a { color: var(--accent); }
