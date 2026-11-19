@@ -397,14 +397,11 @@
           <!-- TODO: приём заявок — см. комментарий у формы #lead-form. Домен сайта: https://marktechdev.ru -->
         </div>
 
-        <form class="form" id="lead-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-endpoint="placeholder">
-          <!--
-            TODO: подключите приём заявок.
-            1) Зарегистрируйтесь в Formspree (или Getform, Basin, Netlify Forms).
-            2) Замените action на ваш endpoint, например https://formspree.io/f/xxxxxxxx.
-            3) Удалите атрибут data-endpoint="placeholder" — тогда форма уйдёт на сервер, а не в mailto.
-            Пока заглушка активна, срабатывает запасной вариант: письмо на info@marktechdev.ru.
-          -->
+        <form class="form" id="lead-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="49974c3a-0dde-40f0-9370-8ce586f2f746">
+          <input type="hidden" name="subject" value="Новая заявка с сайта Марк-Тех">
+          <input type="hidden" name="from_name" value="Сайт marktechdev.ru">
+          <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
             <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
