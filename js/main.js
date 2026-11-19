@@ -41,6 +41,18 @@
     if (btn) { btn.disabled = true; }
     showStatus(true, "Отправляем заявку…");
     var data = new FormData(form);
+    // Отраслевые страницы: отрасль, цель и пакет — в начало текста сообщения (обработчик принимает только message)
+    var niche = form.getAttribute("data-niche");
+    if (niche) {
+      var parts = ["Отрасль: " + niche];
+      var goalSel = form.querySelector('[data-lead="goal"]');
+      var pkgSel = form.querySelector('[data-lead="package"]');
+      if (goalSel && goalSel.value) parts.push("Цель: " + goalSel.value);
+      if (pkgSel && pkgSel.value) parts.push("Пакет: " + pkgSel.value);
+      parts.push("Страница: " + location.pathname);
+      var userMsg = String(data.get("message") || "").trim();
+      data.set("message", "[" + parts.join(" | ") + "]\n\n" + (userMsg || "(без комментария)"));
+    }
     // Фиксируем факт и редакцию согласия, чтобы в письме-заявке было подтверждение его получения
     data.set("consent", "Согласие на обработку ПД дано (редакция от 19.11.2026, https://marktechdev.ru/soglasie.html)");
     var fallback = "Не удалось отправить заявку. Напишите нам на info@marktechdev.ru — ответим в течение рабочего дня.";
@@ -89,16 +101,125 @@
     history.pushState({ id: id }, '', s ? '/' + s : '/');
   });
   window.addEventListener('popstate', function () {
+    if (!document.getElementById('services')) return;
     var s = slug(location.pathname); go(rev[s] || 'top', true);
   });
   window.addEventListener('load', function () {
     var s = slug(location.pathname);
     var id = rev[s] || (location.hash && location.hash.slice(1));
-    if (location.hash && map[location.hash.slice(1)]) {
+    if (location.hash && map[location.hash.slice(1)] && document.getElementById('services')) {
       history.replaceState(null, '', '/' + map[location.hash.slice(1)]);
     } else if (/index\.html$/.test(location.pathname)) {
-      history.replaceState(null, '', '/');
+      history.replaceState(null, '', location.pathname.replace(/index\.html$/, '') + location.hash);
     }
     if (id) go(id, false);
   });
+})();
+
+// Отраслевые посадочные страницы: калькулятор, выбор пакета/цели, липкая кнопка
+(function () {
+  if (!document.body.classList.contains("landing")) return;
+  var form = document.getElementById("lead-form");
+  var goalSel = form && form.querySelector('[data-lead="goal"]');
+  var pkgSel = form && form.querySelector('[data-lead="package"]');
+
+  function setSelect(sel, value) {
+    if (!sel || !value) return;
+    for (var i = 0; i < sel.options.length; i++) {
+      if (sel.options[i].value === value) { sel.selectedIndex = i; return; }
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-package], a[data-goal]");
+    if (!a) return;
+    setSelect(pkgSel, a.getAttribute("data-package"));
+    setSelect(goalSel, a.getAttribute("data-goal") || (a.getAttribute("data-package") ? "Расчёт стоимости" : null));
+  });
+
+  // Калькулятор потерь (оценка): ползунки + числовые поля, анимированные итоги
+  var calc = document.getElementById("calc");
+  if (calc) {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var fmtN = function (v) { return Math.round(v).toLocaleString("ru-RU"); };
+    var vals = {};
+    var setFill = function (range) {
+      var mn = parseFloat(range.min) || 0, mx = parseFloat(range.max) || 100;
+      var pct = Math.max(0, Math.min(100, ((parseFloat(range.value) - mn) / (mx - mn)) * 100));
+      range.style.setProperty("--fill", pct + "%");
+    };
+    calc.querySelectorAll("[data-calc]").forEach(function (range) {
+      var k = range.getAttribute("data-calc");
+      var num = calc.querySelector('[data-calc-num="' + k + '"]');
+      vals[k] = parseFloat(range.value) || 0;
+      setFill(range);
+      range.addEventListener("input", function () {
+        vals[k] = parseFloat(range.value) || 0;
+        if (num) num.value = range.value;
+        setFill(range); update();
+      });
+      if (num) num.addEventListener("input", function () {
+        var v = parseFloat(String(num.value).replace(",", "."));
+        vals[k] = isFinite(v) && v > 0 ? v : 0;
+        range.value = String(Math.min(Math.max(vals[k], parseFloat(range.min)), parseFloat(range.max)));
+        setFill(range); update();
+      });
+    });
+    var animate = function (id, to) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var from = el._v || 0;
+      el._v = to;
+      if (el._raf) cancelAnimationFrame(el._raf);
+      if (reduce || from === to) { el.textContent = fmtN(to); return; }
+      var t0 = null, dur = 550;
+      var step = function (t) {
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        el.textContent = fmtN(from + (to - from) * e);
+        if (k < 1) el._raf = requestAnimationFrame(step);
+      };
+      el._raf = requestAnimationFrame(step);
+    };
+    var last = {};
+    var update = function () {
+      var p = Math.min(vals.p || 0, 100) / 100, r = Math.min(vals.r || 0, 100) / 100;
+      var loss = (vals.n || 0) * p * (vals.check || 0);
+      var routine = (vals.h || 0) * 4.33 * (vals.rate || 0);
+      var total = loss + routine;
+      var gain = loss * r + routine * 0.5;
+      last = { loss: loss, routine: routine, total: total, gain: gain };
+      animate("calc-total", total);
+      animate("calc-mini", total);
+      animate("calc-mini-gain", gain);
+      animate("calc-total-year", total * 12);
+      animate("calc-loss", loss);
+      animate("calc-routine", routine);
+      animate("calc-gain", gain);
+      animate("calc-gain-year", gain * 12);
+      var bl = document.getElementById("calc-bar-loss"), bg = document.getElementById("calc-bar-gain");
+      if (bl) bl.style.width = total > 0 ? "100%" : "0%";
+      if (bg) bg.style.width = total > 0 ? Math.round((gain / total) * 100) + "%" : "0%";
+    };
+    update();
+
+    var cta = document.querySelector("[data-calc-cta]");
+    var msg = document.getElementById("message");
+    if (cta && msg) cta.addEventListener("click", function () {
+      var unit = calc.getAttribute("data-unit") || "";
+      var text = "Расчёт с калькулятора на сайте: " + fmtN(vals.n || 0) + " " + unit + " в месяц, теряется " + fmtN(vals.p || 0) +
+        "%, средний чек " + fmtN(vals.check || 0) + " ₽, ручной учёт " + fmtN(vals.h || 0) + " ч/нед. Оценка потерь — ~" +
+        fmtN(last.total) + " ₽ в месяц (~" + fmtN(last.total * 12) + " ₽ в год), можно вернуть ~" + fmtN(last.gain) +
+        " ₽ в месяц. Хочу обсудить, как вернуть эти деньги.";
+      if (!msg.value.trim() || msg.value === msg._auto) { msg.value = text; msg._auto = text; }
+    });
+  }
+
+  // Липкая кнопка на мобильных: прячем, когда форма заявки на экране
+  var sticky = document.getElementById("sticky-cta");
+  var target = document.getElementById("zayavka");
+  if (sticky && target && "IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { sticky.classList.toggle("is-hidden", en.isIntersecting); });
+    }, { threshold: 0.15 }).observe(target);
+  }
 })();
