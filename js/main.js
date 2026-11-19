@@ -41,19 +41,25 @@
     if (btn) { btn.disabled = true; }
     showStatus(true, "Отправляем заявку…");
     var data = new FormData(form);
-    data.delete("consent");
-    fetch(form.action, { method: "POST", headers: { "Accept": "application/json" }, body: data })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.success, j: j }; }); })
+    // Фиксируем факт и редакцию согласия, чтобы в письме-заявке было подтверждение его получения
+    data.set("consent", "Согласие на обработку ПД дано (редакция от 19.11.2026, https://marktechdev.ru/soglasie.html)");
+    var fallback = "Не удалось отправить заявку. Напишите нам на info@marktechdev.ru — ответим в течение рабочего дня.";
+    fetch(form.action, { method: "POST", mode: "cors", credentials: "omit", headers: { "Accept": "application/json" }, body: data })
+      .then(function (r) {
+        return r.json()
+          .catch(function () { return {}; })
+          .then(function (j) { return { ok: r.ok && j.success === true, j: j }; });
+      })
       .then(function (res) {
         if (res.ok) {
           form.reset();
           showStatus(true, "Спасибо! Заявка отправлена — мы ответим в течение рабочего дня.");
         } else {
-          throw new Error("send failed");
+          showStatus(false, (res.j && res.j.message) ? res.j.message : fallback);
         }
       })
       .catch(function () {
-        showStatus(false, "Не удалось отправить заявку. Напишите нам на info@marktechdev.ru — ответим в течение рабочего дня.");
+        showStatus(false, fallback);
       })
       .then(function () { if (btn) { btn.disabled = false; } });
   });
