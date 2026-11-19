@@ -54,6 +54,30 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://marktechdev.ru/blog/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://marktechdev.ru/blog/sed-i-edo-v-chem-raznica/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marktechdev.ru/blog/integraciya-amocrm-s-1s/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://marktechdev.ru/blog/svoya-crm-ili-korobka/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://marktechdev.ru/privacy.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
