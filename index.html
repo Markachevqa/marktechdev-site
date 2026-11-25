@@ -31,6 +31,7 @@
   <link rel="preload" href="/assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/css/fonts.css">
   <link rel="stylesheet" href="/css/styles.css">
+  <!-- scene-css --><link rel="stylesheet" href="/css/sklad-scene.css">
 
   <script type="application/ld+json">
   {
@@ -184,6 +185,201 @@
           <article class="pain-item"><span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><div><h3>«Машины ждут документы»</h3><p>ТТН и УПД руками, двойной ввод в 1С и кабинеты маркетплейсов.</p></div></article>
           <article class="pain-item"><span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span><div><h3>«Счёт за хранение — в Excel»</h3><p>Ответственное хранение считается вручную, часть операций не попадает в счёт.</p></div></article>
         </div>
+<!-- scene:start -->
+        <div class="sc-home">
+          <div class="sc-home-head">
+            <h3>Так может работать ваш склад</h3>
+            <p>Одно задание на отбор от заказа до отгрузки: программа ведёт погрузчик по складу, проверяет товар сканом и сама обновляет учёт.</p>
+          </div>
+          <div class="sc sc--compact" data-sklad-scene data-step="5" data-sub="sync" id="sch">
+ <div class="sc-bar"><div class="sc-chips" role="group" aria-label="Шаги схемы">
+<button class="sc-chip" type="button" aria-pressed="false" aria-controls="sch-cap"><span class="sc-chip-n">1</span><span class="sc-chip-t">Задание на терминале</span><span class="sc-chip-bar" aria-hidden="true"></span></button>
+<button class="sc-chip" type="button" aria-pressed="false" aria-controls="sch-cap"><span class="sc-chip-n">2</span><span class="sc-chip-t">Маршрут к ячейке</span><span class="sc-chip-bar" aria-hidden="true"></span></button>
+<button class="sc-chip" type="button" aria-pressed="false" aria-controls="sch-cap"><span class="sc-chip-n">3</span><span class="sc-chip-t">Скан и проверка</span><span class="sc-chip-bar" aria-hidden="true"></span></button>
+<button class="sc-chip" type="button" aria-pressed="false" aria-controls="sch-cap"><span class="sc-chip-n">4</span><span class="sc-chip-t">Доставка к воротам</span><span class="sc-chip-bar" aria-hidden="true"></span></button>
+<button class="sc-chip" type="button" aria-pressed="true" aria-controls="sch-cap"><span class="sc-chip-n">5</span><span class="sc-chip-t">Отгрузка и учёт</span><span class="sc-chip-bar" aria-hidden="true"></span></button>
+ </div><button class="sc-toggle" type="button" aria-pressed="false"><svg class="sc-i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg><svg class="sc-i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg><span>Пауза</span></button></div>
+ <div class="sc-body">
+  <div class="sc-mapwrap">
+   <div class="sc-map"><svg class="sc-svg" viewBox="0 0 820 500" role="img" aria-labelledby="sch-t" focusable="false">
+<title id="sch-t">Схема склада сверху: стеллажи А–Г, зона ожидания погрузчика и четверо ворот отгрузки. Погрузчик с терминалом едет по подсвеченному маршруту к ячейке А-03-2, забирает товар и отвозит его к воротам 4.</title>
+<defs>
+ <pattern id="sch-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="rgba(244,239,230,.035)" stroke-width="1"/></pattern>
+ <linearGradient id="sch-floor" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22201d"/><stop offset="1" stop-color="#191816"/></linearGradient>
+ <radialGradient id="sch-glow"><stop offset="0" stop-color="#D7C4A0" stop-opacity=".55"/><stop offset="1" stop-color="#D7C4A0" stop-opacity="0"/></radialGradient>
+ <filter id="sch-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3.2"/></filter>
+</defs>
+<rect x="20" y="20" width="724" height="460" rx="14" fill="url(#sch-floor)"/>
+<rect x="20" y="20" width="724" height="460" rx="14" fill="url(#sch-grid)"/>
+<rect class="sc-wall" x="20" y="20" width="724" height="460" rx="14"/>
+<path class="sc-lane" d="M95 440H650M95 122V440M650 122V440M95 122H650M95 222H650M95 322H650"/>
+<rect class="sc-park" x="36" y="414" width="96" height="52" rx="6"/>
+<text class="sc-t sc-zone" x="84" y="404" text-anchor="middle">Зона ожидания</text>
+<text class="sc-t sc-zone" x="700" y="44" text-anchor="middle">Отгрузка</text>
+<rect class="sc-rack" x="150" y="50" width="440" height="44" rx="4"/>
+<rect class="sc-box" x="157" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="172.0" y1="58" x2="172.0" y2="86"/>
+<line class="sc-rack-div" x1="194" y1="53" x2="194" y2="91"/>
+<rect class="sc-box" x="201" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="216.0" y1="58" x2="216.0" y2="86"/>
+<line class="sc-rack-div" x1="238" y1="53" x2="238" y2="91"/>
+<line class="sc-rack-div" x1="282" y1="53" x2="282" y2="91"/>
+<line class="sc-rack-div" x1="326" y1="53" x2="326" y2="91"/>
+<rect class="sc-box" x="333" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="348.0" y1="58" x2="348.0" y2="86"/>
+<line class="sc-rack-div" x1="370" y1="53" x2="370" y2="91"/>
+<rect class="sc-box" x="377" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="392.0" y1="58" x2="392.0" y2="86"/>
+<line class="sc-rack-div" x1="414" y1="53" x2="414" y2="91"/>
+<line class="sc-rack-div" x1="458" y1="53" x2="458" y2="91"/>
+<rect class="sc-box" x="465" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="480.0" y1="58" x2="480.0" y2="86"/>
+<line class="sc-rack-div" x1="502" y1="53" x2="502" y2="91"/>
+<rect class="sc-box" x="509" y="58" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="524.0" y1="58" x2="524.0" y2="86"/>
+<line class="sc-rack-div" x1="546" y1="53" x2="546" y2="91"/>
+<text class="sc-t sc-row" x="134" y="77" text-anchor="middle">А</text>
+<rect class="sc-rack" x="150" y="150" width="440" height="44" rx="4"/>
+<rect class="sc-box" x="157" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="172.0" y1="158" x2="172.0" y2="186"/>
+<line class="sc-rack-div" x1="194" y1="153" x2="194" y2="191"/>
+<line class="sc-rack-div" x1="238" y1="153" x2="238" y2="191"/>
+<rect class="sc-box" x="245" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="260.0" y1="158" x2="260.0" y2="186"/>
+<line class="sc-rack-div" x1="282" y1="153" x2="282" y2="191"/>
+<rect class="sc-box" x="289" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="304.0" y1="158" x2="304.0" y2="186"/>
+<line class="sc-rack-div" x1="326" y1="153" x2="326" y2="191"/>
+<rect class="sc-box" x="333" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="348.0" y1="158" x2="348.0" y2="186"/>
+<line class="sc-rack-div" x1="370" y1="153" x2="370" y2="191"/>
+<line class="sc-rack-div" x1="414" y1="153" x2="414" y2="191"/>
+<rect class="sc-box" x="421" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="436.0" y1="158" x2="436.0" y2="186"/>
+<line class="sc-rack-div" x1="458" y1="153" x2="458" y2="191"/>
+<rect class="sc-box" x="465" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="480.0" y1="158" x2="480.0" y2="186"/>
+<line class="sc-rack-div" x1="502" y1="153" x2="502" y2="191"/>
+<line class="sc-rack-div" x1="546" y1="153" x2="546" y2="191"/>
+<rect class="sc-box" x="553" y="158" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="568.0" y1="158" x2="568.0" y2="186"/>
+<text class="sc-t sc-row" x="134" y="177" text-anchor="middle">Б</text>
+<rect class="sc-rack" x="150" y="250" width="440" height="44" rx="4"/>
+<line class="sc-rack-div" x1="194" y1="253" x2="194" y2="291"/>
+<rect class="sc-box" x="201" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="216.0" y1="258" x2="216.0" y2="286"/>
+<line class="sc-rack-div" x1="238" y1="253" x2="238" y2="291"/>
+<rect class="sc-box" x="245" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="260.0" y1="258" x2="260.0" y2="286"/>
+<line class="sc-rack-div" x1="282" y1="253" x2="282" y2="291"/>
+<rect class="sc-box" x="289" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="304.0" y1="258" x2="304.0" y2="286"/>
+<line class="sc-rack-div" x1="326" y1="253" x2="326" y2="291"/>
+<line class="sc-rack-div" x1="370" y1="253" x2="370" y2="291"/>
+<rect class="sc-box" x="377" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="392.0" y1="258" x2="392.0" y2="286"/>
+<line class="sc-rack-div" x1="414" y1="253" x2="414" y2="291"/>
+<rect class="sc-box" x="421" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="436.0" y1="258" x2="436.0" y2="286"/>
+<line class="sc-rack-div" x1="458" y1="253" x2="458" y2="291"/>
+<line class="sc-rack-div" x1="502" y1="253" x2="502" y2="291"/>
+<rect class="sc-box" x="509" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="524.0" y1="258" x2="524.0" y2="286"/>
+<line class="sc-rack-div" x1="546" y1="253" x2="546" y2="291"/>
+<rect class="sc-box" x="553" y="258" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="568.0" y1="258" x2="568.0" y2="286"/>
+<text class="sc-t sc-row" x="134" y="277" text-anchor="middle">В</text>
+<rect class="sc-rack" x="150" y="350" width="440" height="44" rx="4"/>
+<rect class="sc-box" x="157" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="172.0" y1="358" x2="172.0" y2="386"/>
+<line class="sc-rack-div" x1="194" y1="353" x2="194" y2="391"/>
+<rect class="sc-box" x="201" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="216.0" y1="358" x2="216.0" y2="386"/>
+<line class="sc-rack-div" x1="238" y1="353" x2="238" y2="391"/>
+<line class="sc-rack-div" x1="282" y1="353" x2="282" y2="391"/>
+<rect class="sc-box" x="289" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="304.0" y1="358" x2="304.0" y2="386"/>
+<line class="sc-rack-div" x1="326" y1="353" x2="326" y2="391"/>
+<rect class="sc-box" x="333" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="348.0" y1="358" x2="348.0" y2="386"/>
+<line class="sc-rack-div" x1="370" y1="353" x2="370" y2="391"/>
+<rect class="sc-box" x="377" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="392.0" y1="358" x2="392.0" y2="386"/>
+<line class="sc-rack-div" x1="414" y1="353" x2="414" y2="391"/>
+<line class="sc-rack-div" x1="458" y1="353" x2="458" y2="391"/>
+<rect class="sc-box" x="465" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="480.0" y1="358" x2="480.0" y2="386"/>
+<line class="sc-rack-div" x1="502" y1="353" x2="502" y2="391"/>
+<rect class="sc-box" x="509" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="524.0" y1="358" x2="524.0" y2="386"/>
+<line class="sc-rack-div" x1="546" y1="353" x2="546" y2="391"/>
+<rect class="sc-box" x="553" y="358" width="30" height="28" rx="2.5"/><line class="sc-box-tape" x1="568.0" y1="358" x2="568.0" y2="386"/>
+<text class="sc-t sc-row" x="134" y="377" text-anchor="middle">Г</text>
+<rect class="sc-target" x="240" y="52" width="40" height="40" rx="3"/>
+<g class="sc-target-box"><rect x="245" y="58" width="30" height="28" rx="2.5"/></g>
+<g class="sc-scan"><path class="sc-beam" d="M260 104 L240 94 L280 94 Z"/><line class="sc-scanline" x1="241" y1="72" x2="279" y2="72"/></g>
+<g class="sc-gate"><rect x="730" y="61" width="14" height="48" rx="3"/><text class="sc-t sc-gnum" x="716" y="90" text-anchor="middle">1</text></g>
+<g class="sc-gate"><rect x="730" y="161" width="14" height="48" rx="3"/><text class="sc-t sc-gnum" x="716" y="190" text-anchor="middle">2</text></g>
+<g class="sc-gate"><rect x="730" y="261" width="14" height="48" rx="3"/><text class="sc-t sc-gnum" x="716" y="290" text-anchor="middle">3</text></g>
+<g class="sc-gate sc-gate4"><rect x="730" y="361" width="14" height="48" rx="3"/><text class="sc-t sc-gnum" x="716" y="390" text-anchor="middle">4</text></g>
+<g class="sc-truck sc-truck2" transform="translate(748 161)"><rect width="58" height="48" rx="4"/><rect x="60" y="6" width="10" height="36" rx="3"/></g>
+<g class="sc-truck sc-truck4" transform="translate(748 361)"><rect width="58" height="48" rx="4"/><rect x="60" y="6" width="10" height="36" rx="3"/></g>
+<path class="sc-route sc-r1" d="M66 440H83Q95 440 95 428V134Q95 122 107 122H260"/>
+<path class="sc-route-done sc-r1d" d="M66 440H83Q95 440 95 428V134Q95 122 107 122H260"/>
+<path class="sc-route sc-r2" d="M260 122H638Q650 122 650 134V373Q650 385 662 385H702"/>
+<path class="sc-route-done sc-r2d" d="M260 122H638Q650 122 650 134V373Q650 385 662 385H702"/>
+<g class="sc-cargo" transform="translate(779 385)"><rect x="-10" y="-11" width="20" height="22" rx="2.5"/><line x1="-10" y1="0" x2="10" y2="0"/></g>
+<g class="sc-fl" transform="translate(702 385)">
+ <circle class="sc-ping" r="26"/>
+ <ellipse class="sc-fl-shadow" cx="4" cy="2" rx="30" ry="17"/>
+ <rect class="sc-wheel" x="-14" y="-15" width="9" height="4.5" rx="1.5"/><rect class="sc-wheel" x="4" y="-15" width="9" height="4.5" rx="1.5"/>
+ <rect class="sc-wheel" x="-14" y="10.5" width="9" height="4.5" rx="1.5"/><rect class="sc-wheel" x="4" y="10.5" width="9" height="4.5" rx="1.5"/>
+ <rect class="sc-fork" x="16" y="-8.5" width="21" height="3.2" rx="1"/><rect class="sc-fork" x="16" y="5.3" width="21" height="3.2" rx="1"/>
+ <rect class="sc-flbody" x="-19" y="-12.5" width="32" height="25" rx="5"/>
+ <rect class="sc-cw" x="-21" y="-11" width="7" height="22" rx="3"/>
+ <rect class="sc-mast" x="12" y="-11.5" width="4.5" height="23" rx="1.2"/>
+ <rect class="sc-cab" x="-10" y="-8.5" width="15" height="17" rx="2.5"/>
+ <rect class="sc-tab" x="1" y="-5" width="6" height="10" rx="1.4"/>
+ <circle class="sc-tab-glow" cx="4" cy="0" r="9" fill="url(#sch-glow)"/>
+</g>
+</svg>
+<span class="sc-call sc-call-task" style="left:10.24%;top:80.80%" aria-hidden="true"><i></i>Новое задание</span>
+<span class="sc-call sc-call-cell" style="left:31.71%;top:9.20%" aria-hidden="true"><b>А-03-2</b><em>Позиция верная</em></span>
+<span class="sc-call sc-call-gate" style="left:90.73%;top:70.80%" aria-hidden="true"><b>Ворота 4</b><em>Отгружено</em></span>
+   </div>
+   <div class="sc-sync" aria-hidden="true"><span class="sc-sync-l">Связь с учётом:</span>
+ <span class="sc-int" data-k="1c">1С</span><span class="sc-int sc-src" data-k="oz">Ozon</span><span class="sc-int sc-src" data-k="wb">Wildberries</span><span class="sc-int" data-k="edo">ЭДО</span><span class="sc-int" data-k="cz">«Честный знак»</span>
+</div>
+  </div>
+  <div class="sc-side">
+   <div class="sc-caps" id="sch-cap">
+<div class="sc-cap" hidden><span class="sc-cap-n">Шаг 1 из 5</span><h3 class="sc-cap-h">Задание на терминале</h3><p>Заказ приходит из WMS или кабинета маркетплейса. Водитель погрузчика сразу видит на ТСД или планшете, что взять, сколько и куда отвезти.</p></div>
+<div class="sc-cap" hidden><span class="sc-cap-n">Шаг 2 из 5</span><h3 class="sc-cap-h">Маршрут к ячейке</h3><p>Система строит на карте склада короткий маршрут к нужной ячейке — А-03-2. Не нужно помнить, где что лежит: путь подсказывает экран.</p></div>
+<div class="sc-cap" hidden><span class="sc-cap-n">Шаг 3 из 5</span><h3 class="sc-cap-h">Скан и проверка</h3><p>Водитель сканирует штрихкод ячейки и товара или код маркировки «Честного знака». Программа сверяет его с заданием и подтверждает: «Позиция верная» — или останавливает ошибку ещё у стеллажа.</p></div>
+<div class="sc-cap" hidden><span class="sc-cap-n">Шаг 4 из 5</span><h3 class="sc-cap-h">Доставка к воротам</h3><p>Следующий маршрут ведёт к воротам отгрузки, которые назначены под эту машину. Груз едет сразу к воротам 4, без лишних кругов по складу.</p></div>
+<div class="sc-cap"><span class="sc-cap-n">Шаг 5 из 5</span><h3 class="sc-cap-h">Отгрузка и учёт</h3><p>Отгрузка подтверждается сканом. Остатки, статус заказа и документы автоматически уходят в 1С, кабинет маркетплейса, ЭДО и «Честный знак».</p></div>
+   </div>
+   <div class="sc-device" aria-hidden="true">
+ <div class="sc-dev-top"><span class="sc-dev-brand">МаркДев · ТСД</span><span class="sc-dev-net"><i></i><i></i><i></i></span></div>
+ <div class="sc-screen">
+  <div class="sc-scr" data-s="1">
+   <span class="sc-badge sc-badge-new">Новое задание</span>
+   <p class="sc-scr-h">Отбор · заказ с маркетплейса</p>
+   <dl class="sc-kv"><div><dt>Товар</dt><dd>Арт. 10-245</dd></div><div><dt>Кол-во</dt><dd>2 шт.</dd></div><div><dt>Ячейка</dt><dd class="sc-mono">А-03-2</dd></div><div><dt>Отгрузка</dt><dd>Ворота 4</dd></div></dl>
+   <span class="sc-dev-btn">Принять задание</span>
+  </div>
+  <div class="sc-scr" data-s="2">
+   <span class="sc-badge">Маршрут</span>
+   <p class="sc-scr-h">К ячейке <span class="sc-mono">А-03-2</span></p>
+   <p class="sc-scr-sub">Ряд А · секция 03 · ярус 2</p>
+   <div class="sc-mini-route"><i></i></div>
+   <p class="sc-scr-hint">Следуйте маршруту на карте</p>
+  </div>
+  <div class="sc-scr" data-s="3">
+   <div class="sc-scanbox"><span class="sc-bars"></span><span class="sc-laser"></span></div>
+   <p class="sc-scr-h sc-when-scan">Сканируйте товар</p>
+   <p class="sc-scr-sub sc-when-scan">Штрихкод или код маркировки</p>
+   <p class="sc-scr-ok sc-when-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Позиция верная</p>
+   <p class="sc-scr-sub sc-when-ok">Арт. 10-245 · 2 из 2 · код проверен</p>
+  </div>
+  <div class="sc-scr" data-s="4">
+   <span class="sc-badge">Маршрут</span>
+   <p class="sc-scr-h">К воротам 4</p>
+   <p class="sc-scr-sub">На вилах: арт. 10-245 · 2 шт.</p>
+   <div class="sc-mini-route"><i></i></div>
+   <p class="sc-scr-hint">Машина у ворот, погрузка разрешена</p>
+  </div>
+  <div class="sc-scr" data-s="5">
+   <p class="sc-scr-ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Отгрузка подтверждена</p>
+   <ul class="sc-sync-list">
+    <li><span>1С</span><em>остатки обновлены</em></li>
+    <li><span>Маркетплейс</span><em>статус «Отгружен»</em></li>
+    <li><span>ЭДО</span><em>УПД отправлен</em></li>
+    <li><span>«Честный знак»</span><em>коды переданы</em></li>
+   </ul>
+  </div>
+ </div>
+</div>
+  </div>
+ </div>
+ <ol class="visually-hidden"><li><strong>Задание на терминале.</strong> Заказ приходит из WMS или кабинета маркетплейса. Водитель погрузчика сразу видит на ТСД или планшете, что взять, сколько и куда отвезти.</li><li><strong>Маршрут к ячейке.</strong> Система строит на карте склада короткий маршрут к нужной ячейке — А-03-2. Не нужно помнить, где что лежит: путь подсказывает экран.</li><li><strong>Скан и проверка.</strong> Водитель сканирует штрихкод ячейки и товара или код маркировки «Честного знака». Программа сверяет его с заданием и подтверждает: «Позиция верная» — или останавливает ошибку ещё у стеллажа.</li><li><strong>Доставка к воротам.</strong> Следующий маршрут ведёт к воротам отгрузки, которые назначены под эту машину. Груз едет сразу к воротам 4, без лишних кругов по складу.</li><li><strong>Отгрузка и учёт.</strong> Отгрузка подтверждается сканом. Остатки, статус заказа и документы автоматически уходят в 1С, кабинет маркетплейса, ЭДО и «Честный знак».</li></ol>
+ <p class="sc-note">Схема условная и показывает принцип. Сценарий, экраны терминала и интеграции настраиваем под процессы вашего склада после бесплатного аудита.</p>
+</div>
+        </div>
+        <!-- scene:end -->
         <div class="agitate">
           <p>Подставьте цифры своего склада в калькулятор: он покажет, во что обходятся ошибки, поиск товара, ручные документы, инвентаризации и недостачи, и оценит экономию после автоматизации.</p>
           <div class="hero-actions">
@@ -647,5 +843,6 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <!-- scene-js --><script src="/js/sklad-scene.js" defer></script>
 </body>
 </html>
