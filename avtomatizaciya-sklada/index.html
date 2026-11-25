@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Автоматизация склада и WMS для малого склада на заказ | МаркДев</title>
+  <meta name="description" content="Автоматизация склада под ваши процессы: лёгкая WMS и складской учёт на заказ, приложение для ТСД, адресное хранение, интеграции с 1С, Ozon, Wildberries и «Честным знаком». Калькулятор потерь и бесплатный аудит склада.">
+  <meta name="keywords" content="автоматизация склада, WMS для малого склада, складской учёт на заказ, программа для склада, автоматизация складского учёта, ответственное хранение программа, ТСД кладовщик">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="МаркДев">
+  <link rel="canonical" href="https://marktechdev.ru/avtomatizaciya-sklada/">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="МаркДев">
+  <meta property="og:title" content="Автоматизация склада под ваши процессы — МаркДев">
+  <meta property="og:description" content="Лёгкая WMS, приложение кладовщика для ТСД и смартфона, интеграции с 1С и маркетплейсами, биллинг ответственного хранения. Посчитайте, сколько теряет ваш склад.">
+  <meta property="og:url" content="https://marktechdev.ru/avtomatizaciya-sklada/">
+  <meta property="og:image" content="https://marktechdev.ru/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Автоматизация склада под ваши процессы — МаркДев">
+  <meta name="twitter:description" content="Лёгкая WMS, приложение кладовщика для ТСД и смартфона, интеграции с 1С и маркетплейсами, биллинг ответственного хранения. Посчитайте, сколько теряет ваш склад.">
+  <meta name="twitter:image" content="https://marktechdev.ru/assets/og-image.png">
+
+  <link rel="preload" href="/assets/fonts/inter-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/css/fonts.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    /* Страница «Автоматизация склада»: локальные дополнения к styles.css */
+    .card-accent { border-color: var(--accent); background: radial-gradient(ellipse at top left, color-mix(in srgb, var(--primary) 16%, transparent), transparent 70%), var(--card); }
+    .grow-steps { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.5rem; padding: 0; list-style: none; counter-reset: gs; }
+    .grow-steps li { counter-increment: gs; padding: 0.45rem 0.9rem; border: 1px solid var(--border); border-radius: 999px; background: var(--card); font-size: 0.9rem; }
+    .grow-steps li::before { content: counter(gs) "  "; color: var(--accent); font-family: var(--font-mono); font-weight: 600; }
+    .compare.ba { min-width: 36rem; }
+    .compare.ba td { position: relative; padding-left: 2.3rem; }
+    .ba-ico { position: absolute; left: 0.8rem; top: 0.95rem; width: 1rem; height: 1rem; }
+    .ba-ico svg { width: 1rem; height: 1rem; display: block; }
+    .ba-bad { color: var(--danger); } .ba-good { color: var(--accent); }
+    .sc-line > span { display: block; }
+    .sc-line > span small { display: block; margin-top: 0.15rem; color: var(--placeholder); font-size: 0.74rem; }
+    .sc-line > span small b { font-weight: 600; color: var(--muted-fg); font-variant-numeric: tabular-nums; }
+    .sc-line strong { color: var(--fg); }
+    .calc-mini .calc-mini-gain { color: var(--accent); }
+    .calc-sources { margin: 0.6rem 0 0; color: var(--placeholder); font-size: 0.72rem; line-height: 1.5; }
+    .calc-sources a { color: var(--muted-fg); }
+    .ex-box { display: grid; gap: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+    .ex-box > * { min-width: 0; }
+    @media (min-width: 960px) { .ex-box { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: start; } }
+    .ex-label { display: inline-block; margin-bottom: 0.75rem; padding: 0.2rem 0.65rem; border: 1px dashed var(--accent); border-radius: 999px; color: var(--accent); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .ex-params { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--muted-fg); font-size: 0.92rem; }
+    .ex-params li { margin-top: 0.3rem; }
+    .compare.ex { min-width: 30rem; }
+    .compare.ex td, .compare.ex th { white-space: nowrap; }
+    .compare.ex tbody th { width: auto; white-space: normal; }
+    .ex-total th, .ex-total td { font-weight: 600; color: var(--fg) !important; }
+    .ex-note { margin: 0.9rem 0 0; color: var(--muted-fg); font-size: 0.82rem; }
+  </style>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Автоматизация склада и разработка WMS на заказ",
+  "serviceType": "Автоматизация складского учёта, WMS для малого склада",
+  "description": "Лёгкая WMS под процессы склада: приёмка по штрихкоду, адресное хранение, подбор и отгрузка, приложение кладовщика для ТСД и смартфона, интеграции с 1С, Ozon, Wildberries, ЭДО и «Честным знаком», биллинг ответственного хранения, дашборд руководителя, электронная очередь машин и сдельная оплата.",
+  "url": "https://marktechdev.ru/avtomatizaciya-sklada/",
+  "provider": {
+    "@type": "Organization",
+    "name": "МаркДев",
+    "url": "https://marktechdev.ru/",
+    "email": "info@marktechdev.ru",
+    "telephone": "+7-985-331-86-05",
+    "logo": "https://marktechdev.ru/assets/logo.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RU"
+    }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Россия"
+  },
+  "audience": {
+    "@type": "BusinessAudience",
+    "name": "Склады оптовых и розничных компаний, фулфилмент, операторы ответственного хранения, склады производств"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Нам нужна полноценная WMS или хватит доработки 1С?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Зависит от объёма, ассортимента и процессов. Иногда достаточно связать 1С с приложением для сканирования, иногда нужна отдельная лёгкая WMS. На бесплатном аудите разберём ваш склад и честно скажем, какой вариант разумнее, в том числе если вам подойдёт готовая программа."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит автоматизация склада?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стоимость рассчитываем индивидуально после бесплатного аудита: она зависит от процессов, числа сотрудников, нужных интеграций и того, с какого участка начинаем. Состав работ и сроки фиксируем в договоре."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужно ли покупать дорогие ТСД?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Не обязательно. Приложение кладовщика может работать на Android-смартфоне со сканером, а если терминалы сбора данных уже есть — используем их. Оборудование подбираем под ваши объёмы на аудите."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Придётся ли останавливать склад на время внедрения?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Запускаем по участкам, и новая схема работает параллельно со старой, пока сотрудники не освоятся."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Работаете с «Честным знаком», ЭДО и маркетплейсами?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, делаем интеграции с «Честным знаком», операторами ЭДО, Ozon, Wildberries и транспортными компаниями через их официальные API. Какие интеграции нужны первыми, определяем на аудите."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Подойдёт для ответственного хранения и фулфилмента?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Учитываем товар по каждому клиенту-владельцу, его тарифы на хранение и операции, а расчёт паллето-мест, актов и счетов делаем автоматическим."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Кладовщики не любят новые программы. Справятся?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Интерфейс строим под конкретные операции: отсканировал — подтвердил. Обучаем сотрудников на месте, а на время перехода новая схема работает параллельно со старой."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Насколько точен калькулятор на странице?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Это оценка по вашим цифрам и осторожным коэффициентам, взятым ниже диапазонов из опубликованных результатов внедрения WMS и сканирования штрихкодов. Точные цифры считаем на бесплатном аудите."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "У вас нет кейсов на складах — почему вам доверять?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Честно: «МаркДев» — молодая компания, складских кейсов у нас пока нет. Поэтому снижаем ваш риск: начинаем с одного участка, сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как проходит аудит: приезжаете или удалённо?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Как удобнее вам. Аудит можно провести удалённо — по видеосвязи, фото и выгрузкам, — а при необходимости выезжаем на склад, чтобы посмотреть процессы вживую."
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "МаркДев",
+      "item": "https://marktechdev.ru/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Автоматизация склада",
+      "item": "https://marktechdev.ru/avtomatizaciya-sklada/"
+    }
+  ]
+}
+  </script>
+</head>
+<body class="landing">
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/" aria-label="МаркДев — на главную">
+        <img src="/assets/logo.svg" width="32" height="32" alt="">
+        <span class="logo-name">МаркДев</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a class="nav-featured" href="/avtomatizaciya-sklada/" aria-current="page">Автоматизация склада</a>
+        <a href="/uslugi">Услуги</a>
+        <a href="/kak-rabotaem">Как работаем</a>
+        <a href="/preimushchestva">Преимущества</a>
+        <a href="/tehnologii">Технологии</a>
+        <a href="/voprosy">Вопросы</a>
+        <a href="/blog/">Блог</a>
+        <a href="/kontakty">Контакты</a>
+      </nav>
+      <div class="header-cta">
+        <a class="header-phone" href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
+        <a class="btn btn-primary" href="#zayavka">Бесплатный аудит</a>
+        <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-grid">
+        <div>
+          <nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span aria-hidden="true">/</span><span>Автоматизация склада</span></nav>
+          <h1>Автоматизация склада под ваши процессы: без пересорта, поиска «по памяти» и ручных ТТН</h1>
+          <p class="lead">Делаем лёгкую WMS и складской учёт на заказ для небольших складов, фулфилмента и операторов ответственного хранения: приёмка и отгрузка по штрихкоду с ТСД или смартфона, адресное хранение, интеграции с 1С, маркетплейсами и «Честным знаком». Начинаем с одной самой дорогой боли и растём по шагам.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#zayavka" data-goal="Бесплатный аудит склада">
+              Бесплатный аудит склада
+              <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost btn-lg" href="#kalkulyator">Посчитать потери склада</a>
+          </div>
+          <ul class="hero-points">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Начинаем с одного участка</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Сроки и объём — в договоре</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Работает параллельно со старой схемой</li>
+          </ul>
+          <div class="hero-tags"><span class="float-tag">Оптовые склады</span><span class="float-tag">Фулфилмент</span><span class="float-tag">Ответственное хранение</span><span class="float-tag">Склады производств</span><span class="float-tag">Продавцы маркетплейсов</span></div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="glow glow-a"></div>
+          <div class="glow glow-b"></div>
+          <div class="system-card report-card">
+            <div class="system-card-head">
+              <strong>Смена · Склад</strong>
+              <div class="status-pills"><i></i><i></i><i></i></div>
+            </div>
+            <p class="report-kicker">Дашборд руководителя онлайн и в Telegram</p>
+            <div class="report-row"><span>Принято паллет</span><strong>42</strong></div><div class="report-row"><span>Собрано заказов</span><strong>318</strong></div><div class="report-row"><span>Ошибки сборки</span><strong>2 · найдены до отгрузки</strong></div><div class="report-row"><span>Машин в очереди</span><strong>2 · слот 14:30</strong></div><div class="report-row"><span>Свободных ячеек</span><strong>14%</strong></div>
+            <p class="report-note">Пример вида экрана, цифры условные</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="problemy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Узнаёте себя?</span>
+          <h2>Обычный день на складе, где учёт держится на людях</h2>
+          <p>Ситуации, с которыми чаще всего сталкиваются небольшие склады, фулфилмент и ответственное хранение:</p>
+        </div>
+        <div class="pain-grid">
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«По учёту есть, на полке нет»</h3><p>В 1С двенадцать коробок, на полке девять. Пересорт, недостача или просто лежат не в той ячейке — выясняется только на инвентаризации.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Где лежит — знает только Саша»</h3><p>Товар находят по памяти опытного кладовщика. Он в отпуске или на больничном — сборка замедляется, новички бегают по складу.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Собрали не то»</h3><p>Перепутали артикул, размер или количество. Клиент возвращает заказ, вы платите за обратную доставку и пересылку, маркетплейс выставляет штраф.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Инвентаризация — значит, склад закрыт»</h3><p>Пересчёт идёт день-два, отгрузки стоят, люди выходят в выходные, а расхождения всё равно остаются.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Машины ждут, пока пишут документы»</h3><p>ТТН и УПД заполняют руками и перебивают из программы в программу. У ворот очередь, водители звонят каждые десять минут.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Сколько сделала смена — непонятно»</h3><p>Кто сколько собрал, где ошибся и почему не успели — руководитель узнаёт из разговоров, а не из цифр.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Счёт за хранение — в Excel до ночи»</h3><p>Паллето-места, приёмку, отбор и упаковку по каждому клиенту ответственного хранения считают вручную, часть операций забывают выставить.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«„Честный знак“ добавил работы»</h3><p>Коды маркировки сканируют отдельно и сверяют вручную, расхождения в кодах и документах разбирают по полдня.</p></div>
+          </article>
+          <article class="pain-item">
+            <span class="pain-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>
+            <div><h3>«Пять программ, и ни одна не дружит»</h3><p>1С, кабинеты Ozon и Wildberries, сайты транспортных компаний: одни и те же данные переносят руками, а ошибки всплывают у клиента.</p></div>
+          </article>
+        </div>
+        <div class="agitate">
+          <p>По отдельности каждая ситуация кажется мелочью. Вместе они складываются в зарплату за лишние часы, возвраты, недостачи и простои машин — и эти деньги склад теряет каждый месяц. Посчитайте, сколько получается у вас.</p>
+          <a class="btn btn-primary" href="#kalkulyator">Посчитать потери склада <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="reshenie">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Что разрабатываем</span>
+          <h2>Складская система под ваш склад, а не склад под систему</h2>
+          <p>Собираем из модулей только то, что нужно вашим процессам, и связываем с программами, в которых вы уже работаете.</p>
+        </div>
+        <div class="cards cards-4">
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg></div>
+            <h3>Лёгкая WMS</h3>
+            <p>Приёмка по штрихкоду, адресное хранение, задания на подбор, контроль отгрузки. Только то, что нужно вашему складу, без лишних модулей.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4M9 18h6"/></svg></div>
+            <h3>Приложение кладовщика</h3>
+            <p>Работает на ТСД или Android-смартфоне со сканером: задания на сборку, сканирование, фото повреждений при приёмке.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7h8M8 12h8M8 17h5"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+            <h3>Интеграции</h3>
+            <p>1С, Ozon, Wildberries, ЭДО, «Честный знак», транспортные компании: данные переходят автоматически, без повторного ввода.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Биллинг ответственного хранения</h3>
+            <p>Автоматический расчёт паллето-мест и операций по тарифам каждого клиента, готовые акты и счета без ручных таблиц.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16M7 16V8m5 8V5m5 11v-6"/></svg></div>
+            <h3>Дашборд руководителя</h3>
+            <p>Остатки, оборачиваемость, производительность смен и ошибки по сотрудникам на одном экране и в Telegram.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h2l2-6h9l3 6h2"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="17.5" cy="18.5" r="1.5"/><path d="M8 11V7h7v4"/></svg></div>
+            <h3>Электронная очередь машин</h3>
+            <p>Перевозчики записываются на слот разгрузки, у ворот — табло очереди, машины меньше простаивают.</p>
+          </article>
+          <article class="card">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+            <h3>Сдельная оплата</h3>
+            <p>Выработка каждого сотрудника считается по фактическим операциям в системе, без споров и ручных подсчётов.</p>
+          </article>
+          <article class="card card-accent">
+            <div class="icon-box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+            <h3>Начинаем с одной боли</h3>
+            <p>Не нужно менять всё сразу. Выбираем участок, который теряет больше всего денег, запускаем его и добавляем модули по шагам.</p>
+          </article>
+        </div>
+        <ol class="grow-steps">
+          <li>Приёмка и отгрузка по штрихкоду</li><li>Адресное хранение и подбор</li><li>Интеграции с 1С, маркетплейсами и ЭДО</li><li>Биллинг, аналитика и сдельная оплата</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="do-posle">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">До и после</span>
+          <h2>Что меняется на складе</h2>
+          <p>Сравнение по типичным ситуациям; что именно изменится у вас, разбираем на аудите.</p>
+        </div>
+        <div class="table-wrap">
+          <table class="compare ba">
+            <thead><tr><th scope="col">Процесс</th><th scope="col">Сейчас</th><th scope="col" class="col-us">С системой</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Остатки</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Сходятся только после инвентаризации</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Видны в реальном времени по каждой ячейке</td></tr>
+              <tr><th scope="row">Поиск товара</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>По памяти кладовщика</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Ячейку показывает ТСД или смартфон</td></tr>
+              <tr><th scope="row">Сборка</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>По бумажному листу, ошибку находит клиент</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Каждая позиция сканируется, ошибку видно сразу</td></tr>
+              <tr><th scope="row">Инвентаризация</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>С остановкой склада на день-два</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Частями по зонам, без остановки отгрузок</td></tr>
+              <tr><th scope="row">Документы</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>ТТН и УПД руками, двойной ввод</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Формируются из системы и уходят в ЭДО</td></tr>
+              <tr><th scope="row">Новый сотрудник</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Неделями запоминает, где что лежит</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Работает по заданиям системы с первых дней</td></tr>
+              <tr><th scope="row">Ответственное хранение</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Счета в Excel, часть операций теряется</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Каждая операция учтена и попадает в счёт</td></tr>
+              <tr><th scope="row">Руководитель</th><td><span class="ba-ico ba-bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></span>Узнаёт о проблемах постфактум</td><td class="col-us"><span class="ba-ico ba-good"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span>Видит смены, ошибки и очередь машин онлайн</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kalkulyator">
+      <div class="container calc-grid">
+        <div>
+          <span class="kicker">Калькулятор экономии</span>
+          <h2>Сколько теряет ваш склад и сколько можно сэкономить</h2>
+          <p class="subhead">Подставьте свои цифры. Калькулятор покажет, во что обходятся ошибки сборки, поиск товара, ручные документы, инвентаризации и недостачи, и оценит экономию после автоматизации.</p>
+          <div class="form calc-form" id="sklad-calc" role="group" aria-label="Исходные данные для расчёта">
+            <div class="calc-mini" aria-hidden="true"><span>Потери</span><strong>~<span id="sc-mini">0</span>&nbsp;₽/мес</strong><span class="calc-mini-gain">экономия ~<span id="sc-mini-gain">0</span>&nbsp;₽</span></div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-staff">Сотрудников на складе: кладовщики, комплектовщики, водители</label>
+                <span class="range-val"><input id="sc-staff-num" data-sc-num="staff" type="number" inputmode="numeric" min="0" step="1" value="8" aria-label="Сотрудников на складе: кладовщики, комплектовщики, водители"><span class="range-unit">чел.</span></span>
+              </div>
+              <input id="sc-staff" class="range" data-sc="staff" type="range" min="1" max="100" step="1" value="8">
+              <div class="range-scale" aria-hidden="true"><span>1</span><span>100+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-salary">Средняя зарплата одного сотрудника с налогами и взносами</label>
+                <span class="range-val"><input id="sc-salary-num" data-sc-num="salary" type="number" inputmode="numeric" min="0" step="5000" value="85000" aria-label="Средняя зарплата одного сотрудника с налогами и взносами"><span class="range-unit">₽/мес</span></span>
+              </div>
+              <input id="sc-salary" class="range" data-sc="salary" type="range" min="30000" max="250000" step="5000" value="85000">
+              <div class="range-scale" aria-hidden="true"><span>30 000</span><span>250 000+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-orders">Заказов или отгрузок в месяц</label>
+                <span class="range-val"><input id="sc-orders-num" data-sc-num="orders" type="number" inputmode="numeric" min="0" step="100" value="1500" aria-label="Заказов или отгрузок в месяц"><span class="range-unit">шт.</span></span>
+              </div>
+              <input id="sc-orders" class="range" data-sc="orders" type="range" min="0" max="30000" step="100" value="1500">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>30 000+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-errpct">Доля заказов с ошибкой сборки: не тот артикул, размер, количество</label>
+                <span class="range-val"><input id="sc-errpct-num" data-sc-num="errpct" type="number" inputmode="decimal" min="0" step="0.1" value="1.5" aria-label="Доля заказов с ошибкой сборки: не тот артикул, размер, количество"><span class="range-unit">%</span></span>
+              </div>
+              <input id="sc-errpct" class="range" data-sc="errpct" type="range" min="0" max="10" step="0.1" value="1.5">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>10+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-errcost">Во что обходится одна ошибка: возврат, пересылка, штраф</label>
+                <span class="range-val"><input id="sc-errcost-num" data-sc-num="errcost" type="number" inputmode="numeric" min="0" step="100" value="1500" aria-label="Во что обходится одна ошибка: возврат, пересылка, штраф"><span class="range-unit">₽</span></span>
+              </div>
+              <input id="sc-errcost" class="range" data-sc="errcost" type="range" min="0" max="20000" step="100" value="1500">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>20 000+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-hours">Часов в день на поиск товара и ручные документы, суммарно по складу</label>
+                <span class="range-val"><input id="sc-hours-num" data-sc-num="hours" type="number" inputmode="decimal" min="0" step="0.5" value="6" aria-label="Часов в день на поиск товара и ручные документы, суммарно по складу"><span class="range-unit">ч</span></span>
+              </div>
+              <input id="sc-hours" class="range" data-sc="hours" type="range" min="0" max="80" step="0.5" value="6">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>80+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-inv">Инвентаризаций в год</label>
+                <span class="range-val"><input id="sc-inv-num" data-sc-num="inv" type="number" inputmode="numeric" min="0" step="1" value="2" aria-label="Инвентаризаций в год"><span class="range-unit">шт.</span></span>
+              </div>
+              <input id="sc-inv" class="range" data-sc="inv" type="range" min="0" max="12" step="1" value="2">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>12+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-invdays">Дней на одну инвентаризацию</label>
+                <span class="range-val"><input id="sc-invdays-num" data-sc-num="invdays" type="number" inputmode="decimal" min="0" step="0.5" value="2" aria-label="Дней на одну инвентаризацию"><span class="range-unit">дн.</span></span>
+              </div>
+              <input id="sc-invdays" class="range" data-sc="invdays" type="range" min="0" max="10" step="0.5" value="2">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>10+</span></div>
+            </div>
+            <div class="range-row">
+              <div class="range-head">
+                <label for="sc-shortage">Недостачи, пересорт и списания за год</label>
+                <span class="range-val"><input id="sc-shortage-num" data-sc-num="shortage" type="number" inputmode="numeric" min="0" step="10000" value="600000" aria-label="Недостачи, пересорт и списания за год"><span class="range-unit">₽</span></span>
+              </div>
+              <input id="sc-shortage" class="range" data-sc="shortage" type="range" min="0" max="5000000" step="10000" value="600000">
+              <div class="range-scale" aria-hidden="true"><span>0</span><span>5 000 000+</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="calc-result" aria-live="polite">
+          <p class="calc-big-label">Склад теряет примерно</p>
+          <p class="calc-big"><span id="sc-total">0</span><span class="calc-cur">&nbsp;₽</span><span class="calc-per">в месяц</span></p>
+          <p class="calc-year">≈ <strong id="sc-total-year">0</strong>&nbsp;₽ в год</p>
+          <div class="calc-bar" aria-hidden="true">
+            <div class="calc-bar-track"><div class="calc-bar-loss" id="sc-bar-loss"></div><div class="calc-bar-gain" id="sc-bar-gain"></div></div>
+            <div class="calc-legend"><span><i class="lg-loss"></i>Потери</span><span><i class="lg-gain"></i>Можно сэкономить</span></div>
+          </div>
+          <div class="calc-lines">
+            <div class="calc-line sc-line"><span>Ошибки сборки и возвраты<small>потери ~<b id="sc-l-err">0</b>&nbsp;₽/мес · оценка снижения −50%</small></span><strong>−<span id="sc-s-err">0</span>&nbsp;₽<small>экономия в месяц</small></strong></div>
+            <div class="calc-line sc-line"><span>Поиск товара и ручные документы<small>потери ~<b id="sc-l-manual">0</b>&nbsp;₽/мес · оценка снижения −40%</small></span><strong>−<span id="sc-s-manual">0</span>&nbsp;₽<small>экономия в месяц</small></strong></div>
+            <div class="calc-line sc-line"><span>Инвентаризации (зарплата за пересчёт)<small>потери ~<b id="sc-l-inv">0</b>&nbsp;₽/мес · оценка снижения −50%</small></span><strong>−<span id="sc-s-inv">0</span>&nbsp;₽<small>экономия в месяц</small></strong></div>
+            <div class="calc-line sc-line"><span>Недостачи и пересорт<small>потери ~<b id="sc-l-short">0</b>&nbsp;₽/мес · оценка снижения −30%</small></span><strong>−<span id="sc-s-short">0</span>&nbsp;₽<small>экономия в месяц</small></strong></div>
+            <div class="calc-line calc-line-accent"><span>Потенциальная экономия (оценка)</span><strong><span id="sc-save">0</span>&nbsp;₽<small>/мес · <span id="sc-save-year">0</span>&nbsp;₽ в год</small></strong></div>
+          </div>
+          <a class="btn btn-primary btn-lg btn-block" href="#zayavka" data-goal="Разбор расчёта потерь на аудите" data-sc-cta>Получить точный расчёт на аудите <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <p class="calc-assume"><strong>Расчёт оценочный, точные цифры — после бесплатного аудита.</strong> Стоимость часа = зарплата с налогами ÷ 165 рабочих часов в месяц. Ошибки = заказы × доля ошибок × стоимость ошибки. Поиск и документы = часы в день × 22 рабочих дня × стоимость часа. Инвентаризации = число в год × дни × сотрудники × 8 ч × стоимость часа ÷ 12. Недостачи = сумма за год ÷ 12. Экономия: ошибки −50%, поиск и документы −40%, инвентаризации −50%, недостачи −30%. Коэффициенты взяты осторожно, ниже диапазонов из опубликованных результатов внедрения WMS и сканирования штрихкодов; простой склада во время инвентаризации и потерянные клиенты не учитываются.</p>
+          <p class="calc-sources">Ориентиры: снижение ошибок отгрузки на 35% и точность остатков 99,8% (<a href="https://www.pentawms.ru/resanta/" target="_blank" rel="noopener nofollow">PentaWMS, «Ресанта»</a>); инвентаризация в 2 раза быстрее, ошибки «человеческого фактора» к нулю (<a href="https://sitec-it.ru/projects/wms-logistika/vnedrili-1s-wms-na-krupneyshem-ressornom-zavode-rossii/" target="_blank" rel="noopener nofollow">СИТЕК, 1С:WMS</a>); комплектование быстрее на 40%, инвентаризация на 50% (<a href="https://infostart.ru/1c/articles/2175617/" target="_blank" rel="noopener nofollow">Инфостарт, AS WMS</a>); инвентаризация в 6 раз быстрее (<a href="https://leadwms.ru/business/news/yaroslavskij-motornyj-zavod-avtomatiziroval-sklad-lead-wms" target="_blank" rel="noopener nofollow">LEAD WMS, ЯМЗ</a>). Это результаты других компаний, а не наши кейсы.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="primer">
+      <div class="container ex-box">
+        <div>
+          <span class="ex-label">Пример расчёта</span>
+          <h2>Условный небольшой склад</h2>
+          <p class="subhead">Это не кейс клиента, а иллюстрация того, как работает калькулятор. Исходные цифры условные — те же, что стоят в калькуляторе по умолчанию.</p>
+          <ul class="ex-params">
+            <li>8 складских сотрудников, зарплата с налогами 85 000&nbsp;₽ (час ≈ 515&nbsp;₽)</li>
+            <li>1 500 заказов в месяц, ошибки в 1,5% заказов, каждая обходится в 1 500&nbsp;₽</li>
+            <li>6 ч в день на поиск товара и ручные документы по складу</li>
+            <li>2 инвентаризации в год по 2 дня</li>
+            <li>600 000&nbsp;₽ недостач и пересорта за год</li>
+          </ul>
+        </div>
+        <div>
+          <div class="table-wrap">
+            <table class="compare ex">
+              <thead><tr><th scope="col">Статья</th><th scope="col">Потери в месяц</th><th scope="col">Снижение</th><th scope="col" class="col-us">Экономия в месяц</th></tr></thead>
+              <tbody>
+              <tr><th scope="row">Ошибки сборки и возвраты</th><td>33 750 ₽</td><td>−50%</td><td class="col-us">16 875 ₽</td></tr>
+              <tr><th scope="row">Поиск товара и ручные документы</th><td>68 000 ₽</td><td>−40%</td><td class="col-us">27 200 ₽</td></tr>
+              <tr><th scope="row">Инвентаризации (зарплата за пересчёт)</th><td>10 990 ₽</td><td>−50%</td><td class="col-us">5 495 ₽</td></tr>
+              <tr><th scope="row">Недостачи и пересорт</th><td>50 000 ₽</td><td>−30%</td><td class="col-us">15 000 ₽</td></tr>
+              <tr class="ex-total"><th scope="row">Итого в месяц</th><td>162 740 ₽</td><td></td><td class="col-us">64 570 ₽</td></tr>
+              <tr class="ex-total"><th scope="row">Итого в год</th><td>1 952 879 ₽</td><td></td><td class="col-us">774 839 ₽</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="ex-note">Даже если учесть только самые очевидные статьи и взять осторожные коэффициенты, получается заметная сумма. Где именно теряет ваш склад, покажет аудит.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="etapy">
+      <div class="container process">
+        <div class="process-intro">
+          <span class="kicker">Как работаем</span>
+          <h2>Аудит → прототип → запуск по этапам</h2>
+          <p class="subhead">Не останавливаем склад и не меняем всё сразу: каждый этап должен приносить пользу сам по себе.</p>
+          <a class="btn btn-primary" href="#zayavka" data-goal="Бесплатный аудит склада">Начать с бесплатного аудита</a>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <span class="step-num">00</span>
+            <div><h3>Бесплатный аудит <span class="step-time">1–2 встречи</span></h3><p>Встречаемся на складе или по видеосвязи: смотрим приёмку, хранение, сборку и документы, считаем потери на ваших цифрах и выбираем первую боль.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">01</span>
+            <div><h3>Прототип <span class="step-time">до разработки</span></h3><p>Показываем экраны и сценарий работы кладовщика на ваших данных. Согласуем, что считается результатом, фиксируем объём и сроки в договоре.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">02</span>
+            <div><h3>Запуск первого участка <span class="step-time">этап 1</span></h3><p>Например, приёмка и отгрузка по штрихкоду. Новая схема работает параллельно со старой, пока команда не освоится.</p></div>
+          </li>
+          <li class="step">
+            <span class="step-num">03</span>
+            <div><h3>Развитие по этапам <span class="step-time">этап 2 и далее</span></h3><p>Добавляем адресное хранение, интеграции, биллинг, аналитику и сдельную оплату — в том порядке, который быстрее окупается вам.</p></div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="garantii">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Честно</span>
+          <h2>Как мы снижаем ваш риск</h2>
+          <p>«МаркДев» — молодая компания: публичного портфолио и складских кейсов у нас пока нет. Поэтому начинаем с малого, а сроки и объём работ фиксируем в договоре.</p>
+        </div>
+        <div class="check-grid check-grid-3">
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Сроки и объём — в договоре</h3><p>После аудита фиксируем в договоре состав работ, этапы и сроки.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Приёмка по чек-листу</h3><p>Заранее согласуем, что считается результатом, и сдаём систему по чек-листу.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Без остановки склада</h3><p>На время перехода новая схема работает параллельно со старой.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Начинаем с одного участка</h3><p>Сначала запускаем то, что быстрее всего окупается, и только потом расширяем систему.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Данные — ваши</h3><p>Все данные можно выгрузить в Excel/CSV в любой момент.</p></div></article>
+          <article class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><h3>Связь напрямую с разработчиком</h3><p>Вы общаетесь с разработчиками и основателем — без цепочки менеджеров.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="voprosy">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">FAQ</span>
+          <h2>Частые вопросы об автоматизации склада</h2>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Нам нужна полноценная WMS или хватит доработки 1С?</summary>
+            <div class="faq-body"><p>Зависит от объёма, ассортимента и процессов. Иногда достаточно связать 1С с приложением для сканирования, иногда нужна отдельная лёгкая WMS. На бесплатном аудите разберём ваш склад и честно скажем, какой вариант разумнее, в том числе если вам подойдёт готовая программа.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Сколько стоит автоматизация склада?</summary>
+            <div class="faq-body"><p>Стоимость рассчитываем индивидуально после бесплатного аудита: она зависит от процессов, числа сотрудников, нужных интеграций и того, с какого участка начинаем. Состав работ и сроки фиксируем в договоре.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Нужно ли покупать дорогие ТСД?</summary>
+            <div class="faq-body"><p>Не обязательно. Приложение кладовщика может работать на Android-смартфоне со сканером, а если терминалы сбора данных уже есть — используем их. Оборудование подбираем под ваши объёмы на аудите.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Придётся ли останавливать склад на время внедрения?</summary>
+            <div class="faq-body"><p>Нет. Запускаем по участкам, и новая схема работает параллельно со старой, пока сотрудники не освоятся.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Работаете с «Честным знаком», ЭДО и маркетплейсами?</summary>
+            <div class="faq-body"><p>Да, делаем интеграции с «Честным знаком», операторами ЭДО, Ozon, Wildberries и транспортными компаниями через их официальные API. Какие интеграции нужны первыми, определяем на аудите.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Подойдёт для ответственного хранения и фулфилмента?</summary>
+            <div class="faq-body"><p>Да. Учитываем товар по каждому клиенту-владельцу, его тарифы на хранение и операции, а расчёт паллето-мест, актов и счетов делаем автоматическим.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Кладовщики не любят новые программы. Справятся?</summary>
+            <div class="faq-body"><p>Интерфейс строим под конкретные операции: отсканировал — подтвердил. Обучаем сотрудников на месте, а на время перехода новая схема работает параллельно со старой.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Насколько точен калькулятор на странице?</summary>
+            <div class="faq-body"><p>Это оценка по вашим цифрам и осторожным коэффициентам, взятым ниже диапазонов из опубликованных результатов внедрения WMS и сканирования штрихкодов. Точные цифры считаем на бесплатном аудите.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>У вас нет кейсов на складах — почему вам доверять?</summary>
+            <div class="faq-body"><p>Честно: «МаркДев» — молодая компания, складских кейсов у нас пока нет. Поэтому снижаем ваш риск: начинаем с одного участка, сроки и объём работ фиксируем в договоре, систему принимаете по чек-листу.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Как проходит аудит: приезжаете или удалённо?</summary>
+            <div class="faq-body"><p>Как удобнее вам. Аудит можно провести удалённо — по видеосвязи, фото и выгрузкам, — а при необходимости выезжаем на склад, чтобы посмотреть процессы вживую.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-muted" id="zayavka">
+      <div class="container contact-grid">
+        <div>
+          <span class="kicker">Заявка</span>
+          <h2>Получите бесплатный аудит склада</h2>
+          <p class="subhead">Оставьте контакт — ответим в течение рабочего дня и договоримся о встрече или созвоне. Разберём ваши процессы, посчитаем потери на реальных цифрах и подскажем, с какого участка начать. Ни к чему не обязывает.</p>
+          <ul class="hero-points hero-points-col">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Честно скажем, если вам лучше подойдёт готовая программа</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Стоимость рассчитываем индивидуально после аудита</li>
+          </ul>
+          <div class="contact-meta">
+            <div class="contact-row">
+              <span>Телефон</span>
+              <a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a>
+            </div>
+            <div class="contact-row">
+              <span>Эл. почта</span>
+              <a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a>
+            </div>
+          </div>
+          <div class="other-niches">
+            <h3>Другие решения</h3>
+            <ul><li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li><li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li><li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li><li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li><li><a href="/crm-na-zakaz/">CRM на заказ</a></li><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li><li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
+          </div>
+        </div>
+
+        <form class="form" id="lead-form" action="https://form.marktechdev.ru/submit.php" method="POST" data-niche="Склад и логистика" data-kind="Отрасль">
+          <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="hidden" name="calc_result" id="sc-hidden" value="">
+          <div class="form-row">
+            <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
+          </div>
+          <div class="form-row">
+            <label for="contact-field">Телефон или эл. почта <span class="req" aria-hidden="true">*</span></label>
+            <input id="contact-field" name="contact" type="text" autocomplete="tel" required placeholder="Телефон или email для ответа">
+          </div>
+          <div class="form-row">
+            <label for="lead-goal">Что интересует</label>
+            <select id="lead-goal" data-lead="goal">
+              <option value="Бесплатный аудит склада">Бесплатный аудит склада</option>
+              <option value="Разбор расчёта потерь на аудите">Точный расчёт потерь и экономии</option>
+              <option value="Приложение для ТСД / приёмка и отгрузка">Приёмка и отгрузка по штрихкоду</option>
+              <option value="Интеграции: 1С, маркетплейсы, ЭДО, Честный знак">Интеграции с 1С, маркетплейсами, ЭДО</option>
+              <option value="Биллинг ответственного хранения">Биллинг ответственного хранения</option>
+              <option value="Расчёт стоимости">Расчёт стоимости</option>
+            </select>
+          </div>
+          <div class="form-row">
+            <label for="message">Комментарий</label>
+            <textarea id="message" name="message" placeholder="Например: склад 1 200 м², 8 кладовщиков, учёт в 1С и Excel, отгружаем на Ozon и Wildberries"></textarea>
+          </div>
+          <label class="consent">
+            <input type="checkbox" name="consent" value="yes" required>
+            <span>Даю <a href="/soglasie.html" target="_blank" rel="noopener">согласие на обработку моих персональных данных</a> <span class="req" aria-hidden="true">*</span></span>
+          </label>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">Получить бесплатный аудит</button>
+          <p class="form-note">Порядок обработки данных описан в <a href="/privacy.html" target="_blank" rel="noopener">Политике обработки персональных данных</a>.</p>
+          <div class="form-status" id="form-status" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-cta" id="sticky-cta">
+    <a class="btn btn-primary btn-block" href="#zayavka" data-goal="Бесплатный аудит склада">Бесплатный аудит склада</a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid footer-grid-4">
+        <div>
+          <a class="footer-brand" href="/">
+            <img src="/assets/logo.svg" width="28" height="28" alt="">
+            МаркДев
+          </a>
+          <p>Заказная разработка программного обеспечения для бизнеса. Проекты по всей России.</p>
+        </div>
+        <div>
+          <h3>Разделы</h3>
+          <ul>
+            <li><a href="/uslugi">Услуги</a></li>
+            <li><a href="/kak-rabotaem">Как работаем</a></li>
+            <li><a href="/preimushchestva">Преимущества</a></li>
+            <li><a href="/voprosy">Вопросы</a></li>
+            <li><a href="/blog/">Блог</a></li>
+            <li><a href="/kontakty">Оставить заявку</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Решения</h3>
+          <ul>
+            <li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li>
+            <li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li>
+            <li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li>
+            <li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li>
+            <li><a href="/vnedrenie-1s/">Внедрение и настройка 1С</a></li>
+            <li><a href="/crm-na-zakaz/">CRM на заказ</a></li>
+            <li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li>
+            <li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li>
+            <li><a href="/avtomatizaciya-sklada/">Автоматизация склада</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Связаться</h3>
+          <ul>
+            <li><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a></li>
+            <li><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></li>
+            <li><a href="/privacy.html">Политика обработки персональных данных</a></li>
+            <li><a href="/soglasie.html">Согласие на обработку персональных данных</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 МаркДев</span>
+        <span class="footer-legal"><a href="tel:+79853318605">+7&nbsp;985&nbsp;331&#8209;86&#8209;05</a><a href="mailto:info@marktechdev.ru">info@marktechdev.ru</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+  <script>
+// Калькулятор потерь и экономии склада (оценка). Без внешних зависимостей.
+(function () {
+  "use strict";
+  var root = document.getElementById("sklad-calc");
+  if (!root) return;
+  var K = {"err": 0.5, "manual": 0.4, "inv": 0.5, "short": 0.3}, HM = 165, WD = 22, SH = 8;
+  // Цели Яндекс.Метрики: срабатывают только после добавления счётчика (src/add_metrika.py задаёт window.MARKDEV_YM_ID)
+  function goal(name) {
+    try { if (window.MARKDEV_YM_ID && typeof window.ym === "function") window.ym(window.MARKDEV_YM_ID, "reachGoal", name); } catch (e) {}
+  }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function fmt(v) {
+    v = Math.round(isFinite(v) ? Math.max(0, v) : 0);
+    return String(v).replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0");
+  }
+  function fmtD(v) { // числа с дробной частью: 1,5
+    var r = Math.round((isFinite(v) ? v : 0) * 10) / 10;
+    var p = String(r).split(".");
+    return p[0].replace(/\B(?=(\d{3})+(?!\d))/g, "\u00a0") + (p[1] ? "," + p[1] : "");
+  }
+  function num(s) {
+    var v = parseFloat(String(s).replace(/\s/g, "").replace(",", "."));
+    return isFinite(v) && v > 0 ? v : 0;
+  }
+  function compute(v) {
+    var staff = v.staff, rate = v.salary / HM;
+    var hrs = Math.min(v.hours, staff * SH);
+    var loss = {
+      err: v.orders * Math.min(v.errpct, 100) / 100 * v.errcost,
+      manual: hrs * WD * rate,
+      inv: v.inv * Math.min(v.invdays, 365) * staff * SH * rate / 12,
+      short: v.shortage / 12
+    };
+    var save = {}, tl = 0, ts = 0;
+    Object.keys(loss).forEach(function (k) {
+      if (!isFinite(loss[k])) loss[k] = 0;
+      save[k] = loss[k] * K[k]; tl += loss[k]; ts += save[k];
+    });
+    return { rate: rate, loss: loss, save: save, total: tl, saving: ts };
+  }
+  var vals = {};
+  function setFill(r) {
+    var mn = parseFloat(r.min) || 0, mx = parseFloat(r.max) || 100;
+    r.style.setProperty("--fill", Math.max(0, Math.min(100, ((parseFloat(r.value) - mn) / (mx - mn)) * 100)) + "%");
+  }
+  root.querySelectorAll("[data-sc]").forEach(function (range) {
+    var k = range.getAttribute("data-sc");
+    var box = root.querySelector('[data-sc-num="' + k + '"]');
+    vals[k] = num(box ? box.value : range.value);
+    setFill(range);
+    range.addEventListener("input", function () {
+      vals[k] = num(range.value); if (box) box.value = range.value; setFill(range); update();
+    });
+    if (box) box.addEventListener("input", function () {
+      vals[k] = num(box.value);
+      range.value = String(Math.min(Math.max(vals[k], parseFloat(range.min)), parseFloat(range.max)));
+      setFill(range); update();
+    });
+  });
+  function put(id, v) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var from = el._v || 0; el._v = v;
+    if (el._raf) cancelAnimationFrame(el._raf);
+    if (reduce || from === v || !window.requestAnimationFrame) { el.textContent = fmt(v); return; }
+    var t0 = null;
+    var step = function (t) {
+      if (t0 === null) t0 = t;
+      var q = Math.min(1, (t - t0) / 450), e = 1 - Math.pow(1 - q, 3);
+      el.textContent = fmt(from + (v - from) * e);
+      if (q < 1) el._raf = requestAnimationFrame(step); else el.textContent = fmt(v);
+    };
+    el._raf = requestAnimationFrame(step);
+  }
+  var last = null;
+  function update() {
+    var r = compute(vals); last = r;
+    put("sc-total", r.total); put("sc-total-year", r.total * 12);
+    put("sc-mini", r.total); put("sc-mini-gain", r.saving);
+    put("sc-save", r.saving); put("sc-save-year", r.saving * 12);
+    Object.keys(r.loss).forEach(function (k) { put("sc-l-" + k, r.loss[k]); put("sc-s-" + k, r.save[k]); });
+    var bl = document.getElementById("sc-bar-loss"), bg = document.getElementById("sc-bar-gain");
+    if (bl) bl.style.width = r.total > 0 ? "100%" : "0%";
+    if (bg) bg.style.width = r.total > 0 ? Math.round(r.saving / r.total * 100) + "%" : "0%";
+  }
+  function pl(n, a, b, c) { // 1 сотрудник, 2 сотрудника, 5 сотрудников
+    n = Math.abs(Math.round(n)); var m10 = n % 10, m100 = n % 100;
+    return m10 === 1 && m100 !== 11 ? a : (m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? b : c);
+  }
+  function summary() {
+    var v = vals, r = last || compute(vals);
+    return "Расчёт с калькулятора склада: " + fmt(v.staff) + " сотрудников, зарплата с налогами " + fmt(v.salary) + " ₽, " +
+      fmt(v.orders) + " заказов в месяц, ошибки сборки " + fmtD(v.errpct) + "% по " + fmt(v.errcost) + " ₽, " +
+      fmtD(v.hours) + " ч в день на поиск и документы, " + fmt(v.inv) + " " + pl(v.inv, "инвентаризация", "инвентаризации", "инвентаризаций") + " в год по " + fmtD(v.invdays) + " дн., недостачи " +
+      fmt(v.shortage) + " ₽ в год. Оценка потерь ~" + fmt(r.total) + " ₽ в месяц (~" + fmt(r.total * 12) +
+      " ₽ в год), потенциальная экономия ~" + fmt(r.saving) + " ₽ в месяц (~" + fmt(r.saving * 12) + " ₽ в год). Хочу точный расчёт на аудите.";
+  }
+  update();
+  var hidden = document.getElementById("sc-hidden"), msg = document.getElementById("message");
+  var cta = document.querySelector("[data-sc-cta]");
+  if (cta) cta.addEventListener("click", function () {
+    goal("sklad_calc_cta");
+    var text = summary();
+    if (hidden) hidden.value = text;
+    if (msg && (!msg.value.trim() || msg.value === msg._auto)) { msg.value = text; msg._auto = text; }
+  });
+  // Обработчик формы принимает только message: перед отправкой добавляем расчёт, если пользователь стёр его из комментария
+  window.addEventListener("submit", function (e) {
+    if (!e.target || e.target.id !== "lead-form") return;
+    if (e.target.checkValidity && e.target.checkValidity()) goal("sklad_form_submit");
+    if (!hidden || !hidden.value || !msg) return;
+    if (msg.value.indexOf("Расчёт с калькулятора склада") === -1) msg.value = (msg.value.trim() ? msg.value.trim() + "\n\n" : "") + hidden.value;
+  }, true);
+  var st = document.getElementById("form-status");
+  if (st && window.MutationObserver) new MutationObserver(function () {
+    if (st.classList.contains("is-ok") && /Спасибо/.test(st.textContent) && !st._sent) { st._sent = true; goal("sklad_lead_sent"); }
+  }).observe(st, { attributes: true, childList: true, subtree: true });
+  window.__skladCalc = { compute: compute, fmt: fmt, summary: summary, vals: vals };
+})();
+
+  </script>
+</body>
+</html>
