@@ -197,6 +197,40 @@
   ]
 }
   </script>
+  <!-- ym:start -->
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    window.MARKDEV_YM_ID = 114680251;
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114680251', 'ym');
+
+    ym(114680251, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/114680251" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+  <script>
+    // МаркДев: цель «lead_sent» (успешная отправка формы на любой странице) и уведомление о cookie
+    document.addEventListener("DOMContentLoaded", function () {
+      var st = document.getElementById("form-status");
+      if (st && window.MutationObserver) new MutationObserver(function () {
+        if (st.classList.contains("is-ok") && /Спасибо/.test(st.textContent) && !st._ymSent) { st._ymSent = true; try { ym(114680251, "reachGoal", "lead_sent"); } catch (e) {} }
+      }).observe(st, { attributes: true, childList: true, characterData: true, subtree: true });
+      var KEY = "md_cookie_notice_v1";
+      try { if (localStorage.getItem(KEY)) return; } catch (e) {}
+      var bar = document.createElement("div");
+      bar.className = "cookie-notice"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Уведомление о cookie");
+      bar.style.cssText = "position:fixed;left:1rem;right:1rem;bottom:1rem;z-index:60;max-width:34rem;margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1rem;padding:.9rem 1rem;border:1px solid var(--accent,#D7C4A0);border-radius:.9rem;background:var(--card,#2A2724);color:var(--muted-fg,#B8B0A4);font-size:.8rem;line-height:1.45;box-shadow:0 18px 40px rgba(0,0,0,.45)";
+      bar.innerHTML = '<p style="margin:0;flex:1 1 16rem">Мы используем cookie и сервис Яндекс.Метрика, чтобы понимать, как посетители пользуются сайтом. Продолжая пользоваться сайтом, вы соглашаетесь с этим. Подробнее — в <a href="/privacy.html#cookie" style="color:var(--fg,#F4EFE6);text-decoration:underline">Политике обработки персональных данных</a>.</p><button type="button" class="btn btn-primary" style="padding:.5rem 1rem;font-size:.8rem">Понятно</button>';
+      bar.querySelector("button").addEventListener("click", function () { try { localStorage.setItem(KEY, "1"); } catch (e) {} bar.remove(); });
+      if (document.getElementById("sticky-cta") && window.matchMedia && window.matchMedia("(max-width: 859px)").matches) bar.style.bottom = "5.25rem";
+      document.body.appendChild(bar);
+    });
+  </script>
+  <!-- ym:end -->
 </head>
 <body class="landing">
   <a class="skip-link" href="#main">Перейти к содержанию</a>
@@ -208,6 +242,7 @@
         <span class="logo-name">МаркДев</span>
       </a>
       <nav class="nav" id="site-nav" aria-label="Основная навигация">
+        <a class="nav-featured" href="/avtomatizaciya-sklada/">Автоматизация склада</a>
         <a href="/uslugi">Услуги</a>
         <a href="/kak-rabotaem">Как работаем</a>
         <a href="/preimushchestva">Преимущества</a>
@@ -642,7 +677,7 @@
           </div>
           <div class="other-niches">
             <h3>Другие отраслевые решения</h3>
-            <ul><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li><li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li><li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li><li><a href="/crm-na-zakaz/">CRM на заказ</a></li><li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li><li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
+            <ul><li><a href="/crm-dlya-avtoservisa/">CRM для автосервиса</a></li><li><a href="/crm-dlya-kliniki/">CRM для клиники</a></li><li><a href="/crm-dlya-proizvodstva/">CRM для производства</a></li><li><a href="/dokumentooborot/">Документооборот для бизнеса</a></li><li><a href="/crm-na-zakaz/">CRM на заказ</a></li><li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li><li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li><li><a href="/avtomatizaciya-sklada/">Автоматизация склада</a></li><li><a href="/uslugi">Заказная разработка под любую задачу</a></li></ul>
           </div>
         </div>
 
@@ -650,11 +685,11 @@
           <input type="checkbox" name="botcheck" class="visually-hidden" style="display:none" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label for="name">Имя <span class="req" aria-hidden="true">*</span></label>
-            <input id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
+            <input class="ym-disable-keys" id="name" name="name" type="text" autocomplete="name" required placeholder="Как к вам обращаться">
           </div>
           <div class="form-row">
             <label for="contact-field">Телефон или эл. почта <span class="req" aria-hidden="true">*</span></label>
-            <input id="contact-field" name="contact" type="text" autocomplete="tel" required placeholder="Телефон или email для ответа">
+            <input class="ym-disable-keys" id="contact-field" name="contact" type="text" autocomplete="tel" required placeholder="Телефон или email для ответа">
           </div>
           <div class="form-row form-row-2">
             <div>
@@ -676,7 +711,7 @@
           </div>
           <div class="form-row">
             <label for="message">Комментарий</label>
-            <textarea id="message" name="message" placeholder="Например: УНФ и Бухгалтерия, сделки вводятся и в CRM, и в 1С, нужен обмен и доработка печатных форм"></textarea>
+            <textarea class="ym-disable-keys" id="message" name="message" placeholder="Например: УНФ и Бухгалтерия, сделки вводятся и в CRM, и в 1С, нужен обмен и доработка печатных форм"></textarea>
           </div>
           <label class="consent">
             <input type="checkbox" name="consent" value="yes" required>
@@ -726,6 +761,7 @@
             <li><a href="/crm-na-zakaz/">CRM на заказ</a></li>
             <li><a href="/integraciya-crm-1s/">Интеграция CRM и 1С</a></li>
             <li><a href="/programma-dlya-stomatologii/">Программа для стоматологии</a></li>
+            <li><a href="/avtomatizaciya-sklada/">Автоматизация склада</a></li>
           </ul>
         </div>
         <div>
